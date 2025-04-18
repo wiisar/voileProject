@@ -1,0 +1,1 @@
+docker stop mysql_container php_container && docker rm mysql_container php_container

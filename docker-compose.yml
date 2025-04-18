@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PS6_BDD_RTPASSWD}
+      MYSQL_DATABASE: bmanem
+      MYSQL_USER: bmanem
+      MYSQL_PASSWORD: ${PS6_BDD_MYSQLPASSWD}
+    volumes:
+      - ./bdd/:/docker-entrypoint-initdb.d/
+    networks:
+      - app_network
+
+  php:
+    build: .
+    image: php:apache
+    container_name: php_container
+    volumes:
+      - ./html/:/var/www/html/
+    ports:
+      - "8080:80"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=bmanem
+      - MYSQL_PASSWORD=${PS6_BDD_MYSQLPASSWD}
+      - MYSQL_DATABASE=bmanem
+      - MYSQL_PORT=3306
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
