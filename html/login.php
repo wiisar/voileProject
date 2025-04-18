@@ -64,12 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $conn->close();
 }
 ?>
+<div class ="logform">
+
+
 <form method="POST" action="">
     <div class="toggle-container">
-        <input type="radio" id="login" name="action" value="login" checked>
-        <label for="login">Login</label>
-        <input type="radio" id="signup" name="action" value="signup">
-        <label for="signup">Sign Up</label>
+        <input type="radio" id="login" name="action" value="login" checked >
+        <label for="login" class="log-radio-label">Login</label>
+        <input type="radio" id="signup" name="action" value="signup" >
+        <label for="signup" class="log-radio-label">Sign Up</label>
     </div>
     <br>
     <input type="text" name="username" placeholder="Username" required>
@@ -84,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
     <input type="submit" name="send" value="Submit">
 </form>
+</div>
 
 <script>
     document.querySelectorAll('input[name="action"]').forEach(radio => {

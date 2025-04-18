@@ -10,13 +10,21 @@
 <body>
 
     <ul>
-        <li><a href="accueil.html">Accueil</a></li>
+        <li><a href="home.php">Accueil</a></li>
         <li><a href="horaires.html">Horaires</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="reserver.html">Réserver en ligne</a></li>
-        <li><a href="sejours.php">Séjours organisés</a></li>
+        <li><a href="pricing.html">Tarifs</a></li>
+        <li><a href="reservation.html">Réserver en ligne</a></li>
+        <li><a href="trip.php">Séjours organisés</a></li>
         <li><a href="contact.html">Contact</a></li>
-    </ul>
+        <li class="login-signup"><a href="#" onclick="document.getElementById('loginModal').style.display='block'">Connexion / Inscription</a></li>
+        
+        </div>
+        
+        
+            <div id="loginModal" style="display:none;">
+                <?php include 'login.php'; ?>
+        
+        </ul>
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
     <h2 id="titre-onglet">Séjours organisés</h2>
@@ -26,7 +34,7 @@
     $username = getenv('MYSQL_USER');
     $password = getenv('MYSQL_PASSWORD');
     $dbname = getenv('MYSQL_DATABASE');
-    echo "<p>Login successful. <br>Welcome, ". $_SESSION["nom"]."!</p>";
+    // echo "<p>Login successful. <br>Welcome, ". $_SESSION["nom"]."!</p>";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

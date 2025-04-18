@@ -202,7 +202,7 @@ DELIMITER ;
 
 -- Insertion de données dans la table Adherents
 INSERT INTO Adherents (nom, prenom, mail, dateAdhesion,passwd) VALUES
-('Dupont', 'Jean', 'jean.dupont@example.com', '2023-01-15','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
+('Dupont', 'Jean', 'jean.dupont@example.com', '2023-01-15','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'), -- mdp : password
 ('Martin', 'Marie', 'marie.martin@example.com', '2023-02-20','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Lefevre', 'Paul', 'paul.lefevre@example.com', '2023-03-25','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Garnier', 'Sophie', 'sophie.garnier@example.com', '2023-04-30','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');

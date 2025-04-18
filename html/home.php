@@ -17,7 +17,14 @@
         <li><a href="reservation.html">Réserver en ligne</a></li>
         <li><a href="trip.php">Séjours organisés</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
+        <li class="login-signup"><a href="#" onclick="document.getElementById('loginModal').style.display='block'">Connexion / Inscription</a></li>
+        
+</div>
+
+
+    <div id="loginModal" style="display:none;">
+        <?php include 'login.php'; ?>
+
     </ul>
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
@@ -100,6 +107,8 @@
         </figure>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+        
+    </script>
 </body>
 </html>
