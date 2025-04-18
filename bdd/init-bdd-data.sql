@@ -164,6 +164,11 @@ CREATE TABLE Encadrer(
     CONSTRAINT Encadrer_Sejour0_FK FOREIGN KEY (idSejour) REFERENCES Sejours(idSejour)
 )ENGINE=InnoDB;
 
+CREATE TABLE sessions (
+    session_id VARCHAR(255) PRIMARY KEY,
+    session_data TEXT NOT NULL,
+    last_access TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
 
 DELIMITER //

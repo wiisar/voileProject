@@ -1,6 +1,10 @@
 <?php
-session_start();
+    require_once 'phpfunc/session_handler.php'; 
+    $handler = new DBSessionHandler();
+    session_set_save_handler($handler, true);
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr"></html>
 <head>
@@ -48,13 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        echo "<p>Login successful. <br>Welcome, ". $row["nom"] ." ". $row["prenom"]."!</p>";
-        // Start a session and save user information
-        $_SESSION['user_id'] = $row['idAdherent'];
-        $_SESSION['user_name'] = $row['nom'] . " " . $row['prenom'];
-        $_SESSION['user_email'] = $row['mail'];
-        $_SESSION['password'] = $password;
-        // header("refresh:3;url=accueil.php");
+        $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
+        echo "<h1>". $_SESSION['success_message'] ."</h1>";
+
 
     } else {
         echo "<p>Invalid username or password.</p>";
@@ -80,8 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <input type="password" name="password" placeholder="Password" required>
     <br>
     <div id="signup-fields" style="display: none;">
+        <input type="text" name="prenom" placeholder="Prenom">
+        <br>
+        <input type="text" name="nom" placeholder="Prenom">
+        <br>
         <input type="text" name="email" placeholder="Email">
         <br>
+        
         <input type="password" name="confirm_password" placeholder="Confirm Password">
         <br>
     </div>

@@ -1,3 +1,13 @@
+<?php
+
+require_once 'phpfunc/session_handler.php';
+
+$handler = new DBSessionHandler();
+session_set_save_handler($handler, true);
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr"></html>
 <head>
