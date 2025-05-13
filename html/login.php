@@ -15,15 +15,6 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <ul>
-        <li><a href="home.php">Accueil</a></li>
-        <li><a href="horaires.html">Horaires</a></li>
-        <li><a href="pricing.html">Tarifs</a></li>
-        <li><a href="reservation.html">Réserver en ligne</a></li>
-        <li><a href="trip.php">Séjours organisés</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
-    </ul>
     <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
     $username = $_POST['username'];
