@@ -44,6 +44,12 @@ session_start();
     $username = getenv('MYSQL_USER');
     $password = getenv('MYSQL_PASSWORD');
     $dbname = getenv('MYSQL_DATABASE');
+
+    // $servername = "localhost:3306";
+    // $username = "bmanem";
+    // $password = "jeXja8-septuf-fitsuj";
+    // $dbname = "bmanem";
+    
     // echo "<p>Login successful. <br>Welcome, ". $_SESSION["nom"]."!</p>";
 
     // Create connection
