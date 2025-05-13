@@ -11,15 +11,21 @@
 
     <!-- Onglets principaux (barre horizontale) -->
     <ul>
-        <li><a href="home.php">Accueil</a></li>
-        <li><a href="club.html">Club</a></li>
-        <li><a href="horaires.html">Horaires</a></li>
-        <li><a href="pricing.html">Tarifs</a></li>
-        <li><a href="reservation.html">Réserver en ligne</a></li>
-        <li><a href="trip.php">Séjours organisés</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
-    </ul>
+    <li><a href="home.php">Accueil</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropbtn">Informations</a>
+        <div class="dropdown-content">
+            <a href="pricing.html">Prix</a>
+            <a href="club.html">Club</a>
+            <a href="horaires.html">Horaires</a>
+        </div>
+    </li>
+    <li><a href="reservation.html">Réserver en ligne</a></li>
+    <li><a href="trip.php">Séjours organisés</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
+</ul>
+
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
 
@@ -30,16 +36,6 @@
             Votre navigateur ne supporte pas la balise vidéo.
         </video>
     </div>
-
-    <!-- <div class="fond-video">
-        <iframe 
-            src="https://www.youtube.com/watch?v=55rdY6u-nkk?autoplay=1&mute=1&loop=1&playlist=55rdY6u-nkk&controls=0&showinfo=0&modestbranding=1" 
-            frameborder="0" 
-            allow="autoplay; fullscreen" 
-            allowfullscreen>
-        </iframe>
-    </div> -->
-
     <?php
         if (isset($_SESSION['success_message'])) {
         echo "<p>" . $_SESSION['success_message'] . "</p>";
