@@ -12,6 +12,7 @@
     <!-- Onglets principaux (barre horizontale) -->
     <ul>
         <li><a href="home.php">Accueil</a></li>
+        <li><a href="club.html">Club</a></li>
         <li><a href="horaires.html">Horaires</a></li>
         <li><a href="pricing.html">Tarifs</a></li>
         <li><a href="reservation.html">Réserver en ligne</a></li>

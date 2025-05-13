@@ -11,6 +11,7 @@
 
     <ul>
         <li><a href="home.php">Accueil</a></li>
+        <li><a href="club.html">Club</a></li>
         <li><a href="horaires.html">Horaires</a></li>
         <li><a href="pricing.html">Tarifs</a></li>
         <li><a href="reservation.html">Réserver en ligne</a></li>
@@ -19,12 +20,31 @@
         <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
     </ul>
     
-    <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
-    <h2 id="titre-onglet">Contact</h2>
+    <h1 id="titre-centre-nautique">Contact</h1>
 
     <strong>Téléphone : </strong>06 95 09 74 97<br>
     <strong>Email : </strong>les.flots.bleus@gmail.com<br>
-    <strong>Adresse : </strong>36 Impasse des Ecumes, 06300 Nice<br>
+    <strong>Adresse : </strong>36 Impasse des Ecumes, 06300 Nice
+
+    <h1 id="titre-centre-nautique">Vous souhaitez nous écrire ?</h1>
+    <section id="mail">
+        <form action="mailto:contact@lesflotsbleus.com" method="post" enctype="text/plain">
+            <label for="name">Votre nom :</label><br>
+            <input type="text" id="name" name="name" placeholder="Entrez votre nom" required><br><br>
+          
+            <label for="email">Votre adresse e-mail :</label><br>
+            <input type="email" id="email" name="email" placeholder="Entrez votre e-mail" required><br><br>
+          
+            <label for="phone">Votre numéro de téléphone :</label><br>
+            <input type="tel" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone" required><br><br>
+          
+            <label for="message">Votre message :</label><br>
+            <textarea id="message" name="message" rows="6" cols="50" placeholder="Écrivez votre message ici..." required></textarea><br><br>
+          
+            <button type="envoyer" class="bouton-envoyer">Envoyer</button>
+        </form>
+    </section>
+      
 
     <script src="script.js"></script>
 </body>
