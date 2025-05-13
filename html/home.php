@@ -24,12 +24,12 @@
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
 
     <!-- Fond vidéo -->
-    <div class="fond-video">
+    <!-- <div class="fond-video">
         <video autoplay muted loop>
             <source src="images/video_vague_grise.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la balise vidéo.
         </video>
-    </div>
+    </div> -->
     <?php
         if (isset($_SESSION['success_message'])) {
         echo "<p>" . $_SESSION['success_message'] . "</p>";
