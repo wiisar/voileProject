@@ -19,13 +19,19 @@ session_start();
 </head>
 <body>
 
-    <ul>
-        <li><a href="home.php">Accueil</a></li>
-        <li><a href="horaires.html">Horaires</a></li>
-        <li><a href="pricing.html">Tarifs</a></li>
-        <li><a href="reservation.html">Réserver en ligne</a></li>
-        <li><a href="trip.php">Séjours organisés</a></li>
-        <li><a href="contact.html">Contact</a></li>
+<ul>
+    <li><a href="home.php">Accueil</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropbtn">Informations</a>
+        <div class="dropdown-content">
+            <a href="pricing.html">Prix</a>
+            <a href="club.html">Club</a>
+            <a href="horaires.html">Horaires</a>
+        </div>
+    </li>
+    <li><a href="reservation.html">Réserver en ligne</a></li>
+    <li><a href="trip.php">Séjours organisés</a></li>
+    <li><a href="contact.html">Contact</a></li>
         <li class="login-signup"><a href="#" onclick="document.getElementById('loginModal').style.display='block'">Connexion / Inscription</a></li>
         
         </div>
@@ -160,6 +166,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
      <button type="submit">Afficher les séjours</button>
  </form> -->
 
-    <script src="script.js"></script>
+    <script src="script/logindisplay.js"></script>
 </body>
 </html>
