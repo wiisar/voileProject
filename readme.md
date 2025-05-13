@@ -26,10 +26,8 @@ Vidéos :
 - les héberger sur Youtube ?
 
 Formulaire de contact :
-- réfléchir aux autres fonctionalités possibles avec l'authentification (adhérent ou pas) ?
 - ajouter une FAQ dans la partie Contact
 - auto-remplir le nom dans le formulaire de contact
-
 
 Sécurité :
 - quelles sont les failles actuelles ?
@@ -40,3 +38,6 @@ Administrateurs :
 - créér plusieurs types d'administrateurs en fonction de ce qu'il font
 - autoriser des suppressions (stages, bateaux, etc...) sans supprimer de la BDD mais en ajoutant un champ isAdmin à activer ou désactiver pour le rendre visible ou pas sur le site
 
+Autres fontionalités :
+- un php spécial pour mettre toutes les pages à jour si on ajoute un onglet par exemple
+- réfléchir aux autres fonctionalités possibles avec l'authentification (adhérent ou pas) ?
