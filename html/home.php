@@ -24,12 +24,22 @@
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
 
     <!-- Fond vidéo -->
-    <!-- <div class="fond-video">
+    <div class="fond-video">
         <video autoplay muted loop>
             <source src="images/video_vague_grise.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la balise vidéo.
         </video>
+    </div>
+
+    <!-- <div class="fond-video">
+        <iframe 
+            src="https://www.youtube.com/watch?v=55rdY6u-nkk?autoplay=1&mute=1&loop=1&playlist=55rdY6u-nkk&controls=0&showinfo=0&modestbranding=1" 
+            frameborder="0" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
     </div> -->
+
     <?php
         if (isset($_SESSION['success_message'])) {
         echo "<p>" . $_SESSION['success_message'] . "</p>";

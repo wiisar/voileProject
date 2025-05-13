@@ -26,9 +26,17 @@ Vidéos :
 - les héberger sur Youtube ?
 
 Formulaire de contact :
-- est-ce qu'on prend en compte si la personne qui envoie le message est un adhérent ou pas ?
+- réfléchir aux autres fonctionalités possibles avec l'authentification (adhérent ou pas) ?
+- ajouter une FAQ dans la partie Contact
+- auto-remplir le nom dans le formulaire de contact
+
 
 Sécurité :
 - quelles sont les failles actuelles ?
 - quelles sont les pistes à améliorer ?
+- sécurité concernant le champ isAdmin : géré par Ben avec injection SQL
+
+Administrateurs :
+- créér plusieurs types d'administrateurs en fonction de ce qu'il font
+- autoriser des suppressions (stages, bateaux, etc...) sans supprimer de la BDD mais en ajoutant un champ isAdmin à activer ou désactiver pour le rendre visible ou pas sur le site
 
