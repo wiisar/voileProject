@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <div id="signup-fields" style="display: none;">
         <input type="text" name="prenom" placeholder="Prenom">
         <br>
-        <input type="text" name="nom" placeholder="Prenom">
+        <input type="text" name="nom" placeholder="Nom">
         <br>
         <input type="text" name="email" placeholder="Email">
         <br>
