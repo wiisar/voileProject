@@ -1,8 +1,10 @@
 
 const displaylog = document.getElementById("loginModal");
+const logbutton = document.getElementById("login-signup")
 
 
 function displaylogin(){
+    let displaylog = document.getElementById("loginModal");
     console.log(displaylog.style.display);
     if (displaylog.style.display === 'block') {
         displaylog.style.display = 'none';
@@ -14,6 +16,4 @@ function displaylogin(){
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    displaylog.addEventListener('click', displaylogin);
-});
+logbutton.addEventListener('click',displaylogin);
