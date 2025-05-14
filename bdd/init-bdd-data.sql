@@ -2,6 +2,23 @@
 SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
 SET collation_connection = utf8mb4_unicode_ci;
+
+-- CREATE TABLE sessions (
+--     session_id VARCHAR(255) PRIMARY KEY,
+--     session_data TEXT NOT NULL,
+--     , session_expiration INT NOT NULL DEFAULT UNIX_TIMESTAMP() + 86400
+-- );
+
+-- #------------------------------------------------------------
+-- # Table: Droits
+-- #------------------------------------------------------------
+
+-- CREATE TABLE DroitsRef(
+--     idDroit Int Auto_increment NOT NULL,
+--     nom     Varchar(50) NOT NULL,
+--     CONSTRAINT idDroit_PK PRIMARY KEY (idDroit)
+-- )ENGINE=InnoDB;
+
 #------------------------------------------------------------
 # Table: Adherents
 #------------------------------------------------------------
@@ -15,6 +32,18 @@ CREATE TABLE Adherents(
     passwd Varchar(500) NOT NULL,
     CONSTRAINT Adherents_PK PRIMARY KEY (idAdherent)
 )ENGINE=InnoDB;
+
+-- #------------------------------------------------------------
+-- # Table: PossederDroits
+-- #------------------------------------------------------------
+
+-- CREATE TABLE PossederDroits(
+--     idAdherent Int,
+--     idDroit Int,
+--     PossederDroits_PK PRIMARY KEY (idAdherent, idDroit),
+--     PossederDroits_Adherents_FK FOREIGN KEY (idAdherent) REFERENCES Adherents(idAdherent),
+--     PossederDroits_DroitsRef_FK FOREIGN KEY (idDroit) REFERENCES DroitsRef(idDroit)
+-- )ENGINE = InnoDB;
 
 #------------------------------------------------------------
 # Table: Modeles
@@ -205,12 +234,19 @@ DELIMITER ;
 # Insertion des données de test
 #------------------------------------------------------------
 
+
+-- INSERT INTO Droits (nom) VALUES
+-- ('Administrateur'),('Adherent'),('Planificateur');
+
 -- Insertion de données dans la table Adherents
 INSERT INTO Adherents (nom, prenom, mail, dateAdhesion,passwd) VALUES
 ('Dupont', 'Jean', 'jean.dupont@example.com', '2023-01-15','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'), -- mdp : password
 ('Martin', 'Marie', 'marie.martin@example.com', '2023-02-20','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Lefevre', 'Paul', 'paul.lefevre@example.com', '2023-03-25','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Garnier', 'Sophie', 'sophie.garnier@example.com', '2023-04-30','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
+
+-- INSERT INTO PossederDroits (idAdherent,idDroit) VALUES
+-- (1,1),(2,2),(3,2),(3,3),(4,3);
 
 -- Insertion de données dans la table Modeles
 INSERT INTO Modeles (type, capacite) VALUES

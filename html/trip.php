@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 require_once 'phpfunc/session_handler.php';
 
@@ -6,7 +6,18 @@ $handler = new DBSessionHandler();
 session_set_save_handler($handler, true);
 session_start();
 
-?>
+// if (!isset($_SESSION['user_id'])) {
+//     // Redirect to login page if user is not logged in
+//     header("Location: login.php");
+//     exit();
+// }
+
+// // Example: Store user information in the session after login
+// // Assuming you have validated the user's credentials
+// $_SESSION['user_id'] = $userId; // Replace $userId with the actual user ID
+// $_SESSION['user_name'] = $userName; // Replace $userName with the actual user name
+// $_SESSION['last_login'] = time(); // Store the last login time
+ ?> -->
 
 <!DOCTYPE html>
 <html lang="fr"></html>
@@ -63,18 +74,6 @@ session_start();
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // $sql = "SELECT * FROM Sejours";
-    // $result = $conn->query($sql);
-
-    // if ($result->num_rows > 0) {
-    //     echo "<table><tr><th>ID</th><th>Prenom</th><th>Nom</th></tr>";
-    //     while($row = $result->fetch_assoc()) {
-    //         echo "<tr><td>" . $row["idSejour"]. "</td><td>" . $row["idPortsDepart"]. "</td><td>" . $row["idPortsArriver"]. "</td></tr>";
-    //     }
-    //     echo "</table>";
-    // } else {
-    //     echo "0 results";
-    // }
     $sqlTypes = "SELECT DISTINCT intitule 
         FROM Sejours Se 
         JOIN Stages S 
@@ -118,7 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
     $selectedIntitule = $_POST["intitule"];
     $selectedBoat = $_POST["boat"];
 
-    // echo '<p>'.$selectedIntitule.'</p>';
     echo '<p>'.$selectedBoat.'</p>';
 
     
@@ -159,10 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
 }
 
     ?>
-<!-- // The form has been moved to wrap the dropdown above <form method="POST" action="">
-     <button type="submit">Afficher les séjours</button>
- </form> -->
-
     <script src="script/display.js"></script>
 </body>
 </html>

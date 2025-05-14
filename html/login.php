@@ -45,23 +45,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 
         $row = $result->fetch_assoc();
-        $stmt = $conn->prepare("SELECT group FROM groupe JOIN Adherents ON groupe. WHERE mail =  AND passwd = ?");
-        $stmt->bind_param("ss", $username, $password);
-        $stmt->execute();
+
+
+        // $rqdt = $conn->prepare("SELECT idDroit FROM PossederDroits WHERE idAdherent = ?");
+        // $rqdt->bind_param("ss", $row['idAdherent']);
+        // $rqdt->execute();
+        // $rqdtres = $rqdt->get_result();
+
+        // if($rqdtres->num_rows >0){
+        //     $right = $rqdtres->fetch_assoc();
+        //     $_SESSION['droit']+=$right["idDroit"];
+        // }
+        
 
 
 
         $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
-        $_SESSION['group'] = $row["group"];
-        $_SESSION['status'] = "conneted";
-        echo "<h1>". $_SESSION['group'] . " Salut";
+        echo "<h1>". $_SESSION['droit'] . " Salut";
         echo "<h1>". $_SESSION['success_message'] ."</h1>";
 
 
     } else {
         echo "<p>Invalid username or password.</p>";
     }
-
+    // $rqdt->close();
     $stmt->close();
     $conn->close();
 }
