@@ -1,8 +1,4 @@
-
-const displaylog = document.getElementById("loginModal");
-const logbutton = document.getElementById("login-signup")
-
-
+const logbutton = document.querySelector(".login-signup a");
 function displaylogin(){
     let displaylog = document.getElementById("loginModal");
     console.log(displaylog.style.display);
@@ -16,4 +12,4 @@ function displaylogin(){
 
 }
 
-logbutton.addEventListener('click',displaylogin);
+logbutton.addEventListener("click",displaylogin);
