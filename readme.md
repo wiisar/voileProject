@@ -1,4 +1,7 @@
 ***Project VOILE***
+*** Auteurs ***
+Salome RODRIGUEZ
+Benjamin MANEM
 
 To run the website you have to install docker :
 ```bash
