@@ -5,18 +5,6 @@ require_once 'phpfunc/session_handler.php';
 $handler = new DBSessionHandler();
 session_set_save_handler($handler, true);
 session_start();
-
-// if (!isset($_SESSION['user_id'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: login.php");
-//     exit();
-// }
-
-// // Example: Store user information in the session after login
-// // Assuming you have validated the user's credentials
-    // $_SESSION['user_id'] = $userId; // Replace $userId with the actual user ID
-    // $_SESSION['user_name'] = $userName; // Replace $userName with the actual user name
-    $_SESSION['last_login'] = time(); // Store the last login time
  ?>
 
 <!DOCTYPE html>
@@ -30,40 +18,8 @@ session_start();
 </head>
 <body>
 
-<ul>
-    <li><a href="home.php">Accueil</a></li>
-    <li class="dropdown">
-        <a href="#" class="dropbtn">Informations</a>
-        <div class="dropdown-content">
-            <a href="pricing.html">Prix</a>
-            <a href="club.html">Club</a>
-            <a href="horaires.html">Horaires</a>
-        </div>
-    </li>
-    <li><a href="reservation.html">Réserver en ligne</a></li>
-    <li><a href="trip.php">Séjours organisés</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <?php
-        if (isset($_SESSION["username"])) {
-            echo '<li class="dropdown dropdown-login">';
-            echo '<a href="#" class="dropbtn-login">' . htmlspecialchars($_SESSION["username"]) . '</a>';
-            echo '<div class="dropdown-content">';
-            echo '<a href="#">Groupe</a>';
-            echo '<a href="profile.php">Profil</a>';
-            echo '<a href="logout.php">Déconnexion</a>';
-            echo '</div>';
-            echo '</li>';
-        } else {
-            echo '<li class="login-signup"><a href="#">Connexion / Inscription</a></li>';
-            echo '</ul>';
-            echo '<div id="loginModal" style="display:none;">';
-            include 'login.php';
-            echo '</div>';
-        }
-        ?>
-        </ul>
-    
-    
+    <?php include 'phpfunc/navbar.php'; ?>
+
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
     <h2 id="titre-onglet">Séjours organisés</h2>
@@ -171,11 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
     $conn->close();
 }
 
-    if (isset($_SESSION["username"])) {
-        echo "<h1>Votre adresse mail est : " . htmlspecialchars($_SESSION["username"]) . "</h1>";
-    } else {
-        echo "<h1>Adresse mail non disponible. Veuillez vous connecter.</h1>";
-    }
+    // if (isset($_SESSION["username"])) {
+    //     echo "<h1>Votre adresse mail est : " . htmlspecialchars($_SESSION["username"]) . "</h1>";
+    // } else {
+    //     echo "<h1>Adresse mail non disponible. Veuillez vous connecter.</h1>";
+    // } TEST
     ?>
     <script src="script/display.js"></script>
 </body>

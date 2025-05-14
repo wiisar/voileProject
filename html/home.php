@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr"></html>
 <head>
@@ -9,23 +12,7 @@
 </head>
 <body>
 
-    <!-- Onglets principaux (barre horizontale) -->
-    <ul>
-    <li><a href="home.php">Accueil</a></li>
-    <li class="dropdown">
-        <a href="#" class="dropbtn">Informations</a>
-        <div class="dropdown-content">
-            <a href="pricing.html">Prix</a>
-            <a href="club.html">Club</a>
-            <a href="horaires.html">Horaires</a>
-        </div>
-    </li>
-    <li><a href="reservation.html">Réserver en ligne</a></li>
-    <li><a href="trip.php">Séjours organisés</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li class="login-signup"><a href="login.php">Connexion / Inscription</a></li>
-</ul>
-
+    <?php include 'phpfunc/navbar.php'; ?>
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
 
@@ -112,6 +99,7 @@
         </figure>
     </div>
 
+    <script src="script/display.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
