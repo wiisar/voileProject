@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 require_once 'phpfunc/session_handler.php';
 
@@ -14,10 +14,10 @@ session_start();
 
 // // Example: Store user information in the session after login
 // // Assuming you have validated the user's credentials
-// $_SESSION['user_id'] = $userId; // Replace $userId with the actual user ID
-// $_SESSION['user_name'] = $userName; // Replace $userName with the actual user name
-// $_SESSION['last_login'] = time(); // Store the last login time
- ?> -->
+    // $_SESSION['user_id'] = $userId; // Replace $userId with the actual user ID
+    // $_SESSION['user_name'] = $userName; // Replace $userName with the actual user name
+    $_SESSION['last_login'] = time(); // Store the last login time
+ ?>
 
 <!DOCTYPE html>
 <html lang="fr"></html>
@@ -43,12 +43,27 @@ session_start();
     <li><a href="reservation.html">Réserver en ligne</a></li>
     <li><a href="trip.php">Séjours organisés</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li class="login-signup"><a href="#">Connexion / Inscription</a></li>
-        
-        </div>
-            <div id="loginModal" style="display:none;">
-                <?php include 'login.php'; ?>
+    <?php
+        if (isset($_SESSION["username"])) {
+            echo '<li class="dropdown dropdown-login">';
+            echo '<a href="#" class="dropbtn-login">' . htmlspecialchars($_SESSION["username"]) . '</a>';
+            echo '<div class="dropdown-content">';
+            echo '<a href="#">Groupe</a>';
+            echo '<a href="profile.php">Profil</a>';
+            echo '<a href="logout.php">Déconnexion</a>';
+            echo '</div>';
+            echo '</li>';
+        } else {
+            echo '<li class="login-signup"><a href="#">Connexion / Inscription</a></li>';
+            echo '</ul>';
+            echo '<div id="loginModal" style="display:none;">';
+            include 'login.php';
+            echo '</div>';
+        }
+        ?>
         </ul>
+    
+    
     
     <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
     <h2 id="titre-onglet">Séjours organisés</h2>
@@ -156,6 +171,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
     $conn->close();
 }
 
+    if (isset($_SESSION["username"])) {
+        echo "<h1>Votre adresse mail est : " . htmlspecialchars($_SESSION["username"]) . "</h1>";
+    } else {
+        echo "<h1>Adresse mail non disponible. Veuillez vous connecter.</h1>";
+    }
     ?>
     <script src="script/display.js"></script>
 </body>

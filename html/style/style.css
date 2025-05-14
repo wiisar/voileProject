@@ -109,7 +109,7 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 /* Pour pousser le bouton Connexion / Inscription à droite */
-.login-signup {
+.login-signup ,.dropdown-login{
     margin-left: auto;
 }
 
