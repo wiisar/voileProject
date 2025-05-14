@@ -7,7 +7,7 @@ php
         <div class="dropdown-content">
             <a href="pricing.php">Prix</a>
             <a href="club.php">Club</a>
-            <a href="horaires.html">Horaires</a>
+            <a href="horaires.php">Horaires</a>
         </div>
     </li>
     <li><a href="reservation.php">Réserver en ligne</a></li>

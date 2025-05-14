@@ -52,13 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         //     $right = $rqdtres->fetch_assoc();
         //     $_SESSION['droit']+=$right["idDroit"];
         // }
-        // $_SESSION['username'] = $row["mail"];
+        $_SESSION['username'] = $row["mail"];
         $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
         // echo "<h1>". $_SESSION['droit'] . " Salut";
-        echo "<h1>". $_SESSION['success_message'] ."</h1>";
-
-
-
+        header("Location: home.php");
+        exit();
     } else {
         echo "<p>Invalid username or password.</p>";
     }
