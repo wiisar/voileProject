@@ -14,7 +14,7 @@ and run this script to start docker containers for the website :
 ./run.sh
 
 ```
-When the container starts you can access to the website by http://localhost:8080/home.php
+When the containers are running you can access to the website by http://localhost:8080/home.php
 
 To stop the website and clean containers you can run : 
 
