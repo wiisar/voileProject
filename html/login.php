@@ -42,8 +42,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
+
+
         $row = $result->fetch_assoc();
+        $stmt = $conn->prepare("SELECT group FROM groupe JOIN Adherents ON groupe. WHERE mail =  AND passwd = ?");
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+
+
+
         $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
+        $_SESSION['group'] = $row["group"];
+        $_SESSION['status'] = "conneted";
+        echo "<h1>". $_SESSION['group'] . " Salut";
         echo "<h1>". $_SESSION['success_message'] ."</h1>";
 
 
@@ -71,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <input type="password" name="password" placeholder="Password" required>
     <br>
     <div id="signup-fields" style="display: none;">
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <br>
         <input type="text" name="prenom" placeholder="Prenom">
         <br>
         <input type="text" name="nom" placeholder="Nom">
@@ -78,8 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <input type="text" name="email" placeholder="Email">
         <br>
         
-        <input type="password" name="confirm_password" placeholder="Confirm Password">
-        <br>
+        
     </div>
     <input type="submit" name="send" value="Submit">
 </form>

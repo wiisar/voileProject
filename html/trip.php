@@ -163,6 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
      <button type="submit">Afficher les séjours</button>
  </form> -->
 
-    <script src="script/logindisplay.js"></script>
+    <script src="script/display.js"></script>
 </body>
 </html>
