@@ -1,9 +1,8 @@
-php
 <?php
 session_start();
 session_destroy();
 session_unset();
 
-header("Location: home.php");
+header("Location: /home.php");
 exit();
 ?>

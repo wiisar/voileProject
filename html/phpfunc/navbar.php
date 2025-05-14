@@ -20,7 +20,7 @@ php
             echo '<div class="dropdown-content">';
             echo '<a href="#">Groupe</a>';
             echo '<a href="profile.php">Profil</a>';
-            echo '<a href="logout.php">Déconnexion</a>';
+            echo '<a href="phpfunc/logout.php">Déconnexion</a>';
             echo '</div>';
             echo '</li>';
         } else {

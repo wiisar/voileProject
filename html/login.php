@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centre de voile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -53,10 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         //     $right = $rqdtres->fetch_assoc();
         //     $_SESSION['droit']+=$right["idDroit"];
         // }
-        $_SESSION['username'] = $row["mail"];
+        // $_SESSION['username'] = $row["mail"];
         $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
-        echo "<h1>". $_SESSION['droit'] . " Salut";
+        // echo "<h1>". $_SESSION['droit'] . " Salut";
         echo "<h1>". $_SESSION['success_message'] ."</h1>";
+
 
 
     } else {
