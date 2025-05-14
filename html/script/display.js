@@ -13,15 +13,16 @@ function displaylogin(){
 
 }
 
-function displayFAQ(toDisplay){
-
-    let display = document.getElementById(toDisplay);
-    console.log(display.style.display);
-    if (display.style.display === 'block') {
-        display.style.display = 'none';
+function displayFAQ(toDisplay) {
+    let question = document.getElementById(toDisplay);
+    let answer = document.getElementById(`r${toDisplay.substring(1)}`); // Assuming the answer ID is 'r' + question ID without 'q'
+    
+    if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        question.setAttribute("aria-expanded", "false");
     } else {
-        display.style.display = 'block';
-        console.log(display.style.display);
+        answer.style.display = 'block';
+        question.setAttribute("aria-expanded", "true");
     }
 }
 
