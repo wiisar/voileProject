@@ -337,7 +337,9 @@ div.cards-container, div.card{
 #loginModal.active {
     display: block;
 }
-
+.log-panel-info{
+    font-size: 12px; /* Taille de la police */
+}
 body.modal-active::before {
     content: '';
     position: fixed;

@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         //     $_SESSION['droit']+=$right["idDroit"];
         // }
         $_SESSION['username'] = $row["mail"];
+        $_SESSION['nom'] = $row["nom"];
+        $_SESSION['prenom'] = $row["prenom"];
+        $_SESSION['group'] = "administrateur";
         $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
         // echo "<h1>". $_SESSION['droit'] . " Salut";
         header("Location: home.php");

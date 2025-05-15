@@ -18,7 +18,8 @@ php
             echo '<li class="dropdown dropdown-login">';
             echo '<a href="#" class="dropbtn-login">' . htmlspecialchars($_SESSION["username"]) . '</a>';
             echo '<div class="dropdown-content">';
-            echo '<a href="#">Groupe</a>';
+            echo '<span class="log-panel-info" >'. htmlspecialchars($_SESSION["nom"]) .' ' .htmlspecialchars($_SESSION["prenom"]) .'</span> <br>';
+            echo '<span class="log-panel-info">'. htmlspecialchars($_SESSION["group"]) .'</span>';
             echo '<a href="profile.php">Profil</a>';
             echo '<a href="phpfunc/logout.php">Déconnexion</a>';
             echo '</div>';
