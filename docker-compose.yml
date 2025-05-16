@@ -17,7 +17,7 @@ services:
 
   php:
     build: .
-    image: php:7.4.3-apache
+    image: php:apache
     container_name: php_container
     volumes:
       - ./html/:/var/www/html/

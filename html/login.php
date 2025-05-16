@@ -45,27 +45,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $row = $result->fetch_assoc();
 
 
-        // $rqdt = $conn->prepare("SELECT idDroit FROM PossederDroits WHERE idAdherent = ?");
-        // $rqdt->bind_param("ss", $row['idAdherent']);
-        // $rqdt->execute();
-        // $rqdtres = $rqdt->get_result();
+        $rqdt = $conn->prepare("SELECT D.nom FROM PossederDroits P JOIN DroitsRef D on P.idDroit = D.idDroit WHERE P.idAdherent = ?");
+        $rqdt->bind_param("s", $row["idAdherent"]);
+        $rqdt->execute();
+        $res = $rqdt->get_result();
 
-        // if($rqdtres->num_rows >0){
-        //     $right = $rqdtres->fetch_assoc();
-        //     $_SESSION['droit']+=$right["idDroit"];
-        // }
+        if($res->num_rows > 0){
+            $rowR = $res->fetch_assoc();
+            $_SESSION['group']=$rowR["nom"];
+        }
+        else{
+            $_SESSION['group']="no group";
+        }
         $_SESSION['username'] = $row["mail"];
         $_SESSION['nom'] = $row["nom"];
         $_SESSION['prenom'] = $row["prenom"];
-        $_SESSION['group'] = "administrateur";
-        $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
+        // $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
         // echo "<h1>". $_SESSION['droit'] . " Salut";
         header("Location: home.php");
         exit();
     } else {
         echo "<p>Invalid username or password.</p>";
     }
-    // $rqdt->close();
+    $rqdt->close();
     $stmt->close();
     $conn->close();
 }
