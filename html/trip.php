@@ -20,12 +20,12 @@ session_start();
     <h2 id="titre-onglet">Séjours organisés</h2>
 
 <?php
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
+    $db_host = getenv('MYSQL_HOST') ?: "localhost";
+    $db_port = getenv('MYSQL_PORT') ?: "3306";
     $servername = $db_host . ":" . $db_port;
-    $username = getenv('MYSQL_USER') ?: 'bmanem';
-    $password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+    $username = getenv('MYSQL_USER') ?: "bmanem";
+    $password = getenv('MYSQL_PASSWORD') ?: "jeXja8-septuf-fitsuj";
+    $dbname = getenv('MYSQL_DATABASE') ?: "bmanem";
 
 
     // $servername = "localhost:3306";
@@ -51,7 +51,7 @@ session_start();
     $stmt->execute();
     $resultTypes = $stmt->get_result();
 
-    $boatsql="SELECT DISTINCT type FROM Modeles";
+    $boatsql="SELECT DISTINCT idModele, type FROM Modeles";
     $stmt = $conn->prepare($boatsql);
     $stmt->execute();
     $boatresult = $stmt->get_result();
@@ -62,13 +62,13 @@ session_start();
         echo '<select id="intitule" name="intitule">';
         echo '<option value =""> </option>';
         while ($row = $resultTypes->fetch_assoc()) {
-            echo '<option value="' . htmlspecialchars(string: $row["intitule"]) . '">' . htmlspecialchars($row["intitule"]) . '</option>';
+            echo '<option value="' . htmlspecialchars($row["intitule"]) . '">' . htmlspecialchars($row["intitule"]) . '</option>';
         }
         echo '</select>';
         echo '<select id ="boat" name="boat">';
         echo '<option value =""> </option>';
         while ($row = $boatresult->fetch_assoc()) {
-            echo '<option value="' . htmlspecialchars(string: $row["id"]) . '">' . htmlspecialchars($row["type"]) . '</option>';
+            echo '<option value="' . htmlspecialchars($row["idModele"]) . '">' . htmlspecialchars($row["type"]) . '</option>';
         }
         echo '</select>';
         echo '</div>';
