@@ -20,12 +20,12 @@ session_start();
     <h2 id="titre-onglet">Séjours organisés</h2>
 
 <?php
-    $db_host = getenv('MYSQL_HOST') ?: "localhost";
-    $db_port = getenv('MYSQL_PORT') ?: "3306";
+    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
+    $db_port = getenv('MYSQL_PORT') ?: '3306';
     $servername = $db_host . ":" . $db_port;
-    $username = getenv('MYSQL_USER') ?: "bmanem";
-    $password = getenv('MYSQL_PASSWORD') ?: "jeXja8-septuf-fitsuj";
-    $dbname = getenv('MYSQL_DATABASE') ?: "bmanem";
+    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
+    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
+    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
 
 
     // $servername = "localhost:3306";
@@ -36,7 +36,7 @@ session_start();
     // echo "<p>Login successful. <br>Welcome, ". $_SESSION["nom"]."!</p>";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
     // Check connection
     if ($conn->connect_error) {
