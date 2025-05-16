@@ -18,10 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Hash the password
     $password = hash('sha256', $password);
     // Database connection
-    $servername = getenv('MYSQL_HOST') .":". getenv('MYSQL_PORT');
-    $db_username = getenv('MYSQL_USER');
-    $db_password = getenv('MYSQL_PASSWORD');
-    $dbname = getenv('MYSQL_DATABASE');
+    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
+    $db_port = getenv('MYSQL_PORT') ?: '3306';
+    $servername = $db_host . ":" . $db_port;
+    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
+    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
+    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
 
 
     $conn = new mysqli($servername, $db_username, $db_password, $dbname);

@@ -20,10 +20,13 @@ session_start();
     <h2 id="titre-onglet">Séjours organisés</h2>
 
 <?php
-    $servername = getenv('MYSQL_HOST') .":". getenv('MYSQL_PORT');
-    $username = getenv('MYSQL_USER');
-    $password = getenv('MYSQL_PASSWORD');
-    $dbname = getenv('MYSQL_DATABASE');
+    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
+    $db_port = getenv('MYSQL_PORT') ?: '3306';
+    $servername = $db_host . ":" . $db_port;
+    $username = getenv('MYSQL_USER') ?: 'bmanem';
+    $password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
+    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+
 
     // $servername = "localhost:3306";
     // $username = "bmanem";
