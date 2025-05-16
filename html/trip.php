@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
     $selectedIntitule = $_POST["intitule"];
     $selectedBoat = $_POST["boat"];
 
-    echo '<p>'.$selectedBoat.'</p>';
+    // echo '<p>'.$selectedBoat.'</p>';
 
     
     $sqlCards = "SELECT S.intitule, M.type, P1.emplacements AS P_Depart, P2.emplacements AS P_Arriver, S.duree 
