@@ -109,7 +109,7 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 /* Pour pousser le bouton Connexion / Inscription à droite */
-.login-signup ,.dropdown-login{
+.login-signup ,.dropdown-login ,.dropdown-admin{
     margin-left: auto;
 }
 
@@ -395,4 +395,44 @@ body.modal-active::before {
 /* Barre de séparation entre la question et la réponse */
 .reponse-FAQ {
     border-left: 3px solid #7ec9d3;  /* Bordure verte */
+}
+
+.user-tab{
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    width: 100%;
+
+    table {
+        border-collapse: collapse;
+        background-color: #222;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        margin: 0 auto;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 20px;
+        border-bottom: 1px solid #444;
+        text-align: center;
+    }
+
+    th {
+        background-color: #7ec9d3;
+        color: #222;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover {
+        background-color: #333;
+        transition: background 0.2s;
+    }
 }
