@@ -4,6 +4,17 @@ SET CHARACTER SET utf8mb4;
 SET collation_connection = utf8mb4_unicode_ci;
 
 #------------------------------------------------------------
+# Table: FAQ
+#------------------------------------------------------------
+
+CREATE TABLE FAQ( 
+    idFAQ  Int  Auto_increment  NOT NULL ,
+    question      Varchar (50) NOT NULL ,
+    reponse       Varchar (50) NOT NULL ,
+    CONSTRAINT FAQ_PK PRIMARY KEY (idFAQ)
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
 # Table: DroitsRef
 #------------------------------------------------------------
 
@@ -223,18 +234,27 @@ DELIMITER ;
 # Insertion des données de test
 #------------------------------------------------------------
 
+-- Insertion de données dans la table FAQ
+INSERT INTO FAQ (question, reponse) VALUES
+("aaaaaaaaa", "bbbbbbbb"),
+("Comment réserver une activité ?", "Pour réserver une activité, vous pouvez nous contacter directement via notre page de réservation ou nous appeler au numéro indiqué sur cette page."),
+("Quels sont vos horaires d'ouverture ?", "Nos horaires d'ouverture sont disponibles sur la page dédiée de notre site, via l'onglet Informations/Horaires."),
+("Comment peut-on venir au Centre Nautique ?", "Une piste cyclable longeant la côte vous permet d'arriver à notre centre nautique. Sinon, un parking est présent pour y venir en voiture et le bus 10 vous y dépose directement, à l'arrêt Les Flots."),
+("Dois-je apporter mon propre matériel ?", "Non, nous fournissons tout le nécessaire pour vos activités. Vous pouvez cependant apporter votre propre matériel si vous le souhaitez."),
+("Y a-t-il des casiers disponibles pour mes affaires ?", "Le centre est équipé de vestiaires, de douches collectives et individuelles et de casiers avec bracelets-clés pour stocker vos affaires pendant votre pratique.");
+
 
 INSERT INTO DroitsRef (nom) VALUES
 ('Administrateur'),('Adherent'),('Planificateur');
 
 -- Insertion de données dans la table Adherents
-INSERT INTO Adherents (nom, prenom, mail, dateAdhesion,passwd) VALUES
+INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES
 ('Dupont', 'Jean', 'jean.dupont@example.com', '2023-01-15','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'), -- mdp : password
 ('Martin', 'Marie', 'marie.martin@example.com', '2023-02-20','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Lefevre', 'Paul', 'paul.lefevre@example.com', '2023-03-25','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
 ('Garnier', 'Sophie', 'sophie.garnier@example.com', '2023-04-30','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 
-INSERT INTO PossederDroits (idAdherent,idDroit) VALUES
+INSERT INTO PossederDroits (idAdherent, idDroit) VALUES
 (1,1),(2,2),(3,2),(3,3),(4,3);
 
 -- Insertion de données dans la table Modeles
@@ -249,7 +269,7 @@ INSERT INTO Modeles (type, capacite) VALUES
 ('Paddle', 1);
 
 -- Insertion de données dans la table Bateaux
-INSERT INTO Bateaux (nom, dateAchat,idModele) VALUES
+INSERT INTO Bateaux (nom, dateAchat, idModele) VALUES
 ('Voilier A', '2022-05-10',1),
 ('Voilier B', '2022-06-20',1),
 ('Catamaran C', '2021-07-15',2),
@@ -260,7 +280,7 @@ INSERT INTO Bateaux (nom, dateAchat,idModele) VALUES
 
 
 -- Insertion de données dans la table Stages
-INSERT INTO Stages (intitule, duree, niveau, prixMin, prixMax,idModele) VALUES
+INSERT INTO Stages (intitule, duree, niveau, prixMin, prixMax, idModele) VALUES
 ('Initiation à la voile', '02:00:00', 1, 50.00, 70.00,1),
 ('Perfectionnement', '03:00:00', 2, 80.00, 100.00,2),
 ('Voile en équipage', '04:00:00', 3, 120.00, 150.00,3),
@@ -281,7 +301,7 @@ INSERT INTO Ports (emplacements) VALUES
 ('Port de Marseille'),
 ('Port de Nice');
 -- Insertion de données dans la table Sejour
-INSERT INTO Sejours (capacite, prix, idPortsDepart, idPortsArriver,dates,idStage) VALUES
+INSERT INTO Sejours (capacite, prix, idPortsDepart, idPortsArriver, dates, idStage) VALUES
 (5, 150.00, 1, 2,'2023-07-01',1),
 (8, 200.00, 2, 1,'2023-07-02',2),
 (6, 250.00, 3, 4,'2023-07-03',2),

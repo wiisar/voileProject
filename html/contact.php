@@ -41,41 +41,39 @@
     </section>
 
     <div class="bloc-FAQ">
-        <div class="item-FAQ">
-          <button class="question-FAQ" id="q1">Comment réserver une activité ?</button>
-          <div class="reponse-FAQ" id="r1">
-            <p>Pour réserver une activité, vous pouvez nous contacter directement via notre page de réservation ou nous appeler au numéro indiqué sur cette page.</p>
-          </div>
-        </div>
-      
-        <div class="item-FAQ">
-          <button class="question-FAQ" id="q2">Quels sont vos horaires d'ouverture ?</button>
-          <div class="reponse-FAQ" id="r2">
-            <p>Nos horaires d'ouverture sont disponibles sur la page dédiée de notre site, via l'onglet Informations/Horaires.</p>
-          </div>
-        </div>
+      <?php
+        $db_host = getenv('MYSQL_HOST') ?: 'localhost';
+        $db_port = getenv('MYSQL_PORT') ?: '3306';
+        $servername = $db_host . ":" . $db_port;
+        $db_username = getenv('MYSQL_USER') ?: 'bmanem';
+        $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
+        $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+    
+        // Create connection
+        $conn = new mysqli($servername, $db_username, $db_password, $dbname);
+    
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+    
+        $sqlUser = "SELECT * FROM FAQ";
+        $stmt = $conn->prepare($sqlUser);
+        $stmt->execute();
+        $resultTypes = $stmt->get_result();
 
-        <div class="item-FAQ">
-            <button class="question-FAQ" id="q3">Comment peut-on venir au Centre Nautique ?</button>
-            <div class="reponse-FAQ" id="r3">
-              <p>Une piste cyclable longeant la côte vous permet d'arriver à notre centre nautique. Sinon, un parking est présent pour y venir en voiture et le bus 10 vous y dépose directement, à l'arrêt Les Flots.</p>
-            </div>
-        </div>
-      
-        <div class="item-FAQ">
-          <button class="question-FAQ" id="q4">Dois-je apporter mon propre équipement ?</button>
-          <div class="reponse-FAQ" id="r4">
-            <p>Non, nous fournissons tout le nécessaire pour vos activités. Vous pouvez cependant apporter votre propre matériel si vous le souhaitez.</p>
-          </div>
-        </div>
-
-        <div class="item-FAQ">
-            <button class="question-FAQ" id="q5">Y a-t-il des casiers disponibles pour mes affaires ?</button>
-            <div class="reponse-FAQ" id="r5">
-              <p>Le centre est équipé de vestiaires, de douches collectives et individuelles et de casiers avec bracelets-clés pour stocker vos affaires pendant votre pratique.</p>
-            </div>
-        </div>
+        while ($res = $resultTypes->fetch_assoc()) {
+          echo '<div class="item-FAQ">';
+          echo '<button class="question-FAQ"' . htmlspecialchars($res["question"]) . '</button>';
+          echo '<div class="reponse-FAQ"';
+            echo '<p>' . htmlspecialchars($res["reponse"]) . '</p>';
+          echo '</div>';
+        }
+      ?>
     </div>
+
+
+
     
     <script src="script/display.js"></script>
     <script src="script.js"></script>
