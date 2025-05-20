@@ -38,7 +38,7 @@ php
             echo '<li class="login-signup"><a href="#">Connexion / Inscription</a></li>';
             echo '</ul>';
             echo '<div id="loginModal" style="display:none;">';
-            include 'login.php';
+            include 'phpfunc/login.php';
             echo '</div>';
         }
         ?>
