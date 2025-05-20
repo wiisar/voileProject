@@ -318,7 +318,7 @@ div.cards-container, div.card{
 }
 
 
-#loginModal {
+#loginModal , #userAddModal{
     display: none;
     position: fixed;
     top: 50%;
@@ -334,7 +334,7 @@ div.cards-container, div.card{
     color: white;
 }
 
-#loginModal.active {
+#loginModal.active , #userAddModal.active{
     display: block;
 }
 .log-panel-info{

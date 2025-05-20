@@ -13,6 +13,16 @@ function displaylogin(){
     }
 }
 
+function displayuseradd(){
+    let displaylog = document.getElementById("userAddModal");
+    // console.log(displaylog.style.display);
+    if (displaylog.style.display === 'block') {
+        displaylog.style.display = 'none';
+    } else {
+        displaylog.style.display = 'block';
+        // console.log(displaylog.style.display);
+    }
+}
 
 
 function displayFAQ(toDisplay) {
@@ -36,6 +46,6 @@ if(logbutton){
 
 }
 if(userAddBtn){
-    userAddBtn.addEventListener("click",displaylogin);
+    userAddBtn.addEventListener("click",displayuseradd);
 
 }

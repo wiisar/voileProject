@@ -22,8 +22,8 @@ session_start();
 if(isset($_SESSION['group']) && $_SESSION['group'] == "Administrateur"){
     
     echo "<button id='addUserBtn'>Ajouter un utilisateur</button>";
-    echo '<div id="loginModal" style="display:none;">';
-    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/login.php';
+    echo '<div id="userAddModal" style="display:none;">';
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/userAdd.php';
     echo '</div>';
 
 
