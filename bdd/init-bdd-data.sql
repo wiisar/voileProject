@@ -9,8 +9,8 @@ SET collation_connection = utf8mb4_unicode_ci;
 
 CREATE TABLE FAQ( 
     idFAQ  Int  Auto_increment  NOT NULL ,
-    question      Varchar (50) NOT NULL ,
-    reponse       Varchar (50) NOT NULL ,
+    question      Varchar (500) NOT NULL ,
+    reponse       Varchar (5000) NOT NULL ,
     CONSTRAINT FAQ_PK PRIMARY KEY (idFAQ)
 )ENGINE=InnoDB;
 

@@ -31,10 +31,8 @@ function displayFAQ(toDisplay) {
     
     if (answer.style.display === 'block') {
         answer.style.display = 'none';
-        question.setAttribute("aria-expanded", "false");
     } else {
         answer.style.display = 'block';
-        question.setAttribute("aria-expanded", "true");
     }
 }
 
@@ -43,7 +41,6 @@ Array.from(faqbutton).forEach(button => {
 });
 if(logbutton){
     logbutton.addEventListener("click",displaylogin);
-
 }
 if(userAddBtn){
     userAddBtn.addEventListener("click",displayuseradd);

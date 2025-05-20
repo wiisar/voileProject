@@ -377,7 +377,7 @@ body.modal-active::before {
 /* Lorsque la réponse est ouverte */
 .reponse-FAQ.open {
     display: block;
-    padding: 10px; /* Ajouter plus d'espace autour du texte de la réponse */
+    /* padding: 10px; Ajouter plus d'espace autour du texte de la réponse */
 }
 
 /* Style pour les boutons de la FAQ */

@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 $stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
 $stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
 if ($stmt->execute()) {
-    echo "<p>Ajout réussi </p>";
+    // echo "<p>Ajout réussi </p>";
 } else {
-    echo "<p>L'ajout de l'utilisateur a échoué.</p>";
+    // echo "<p>L'ajout de l'utilisateur a échoué.</p>";
 }
 $stmt->close();
 $conn->close();
