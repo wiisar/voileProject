@@ -195,7 +195,7 @@ figure figcaption {
 }
 
 div.cards-container, div.card{
-    border: 3px solid #3f87a6;
+    /* border: 3px solid #3f87a6; */
     border-radius: 5px;
 }
 
