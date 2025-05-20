@@ -64,17 +64,15 @@
 
         while ($res = $resultTypes->fetch_assoc()) {
           echo '<div class="item-FAQ">';
-          echo '<button class="question-FAQ"' . htmlspecialchars($res["question"]) . '</button>';
-          echo '<div class="reponse-FAQ"';
+          echo '<button class="question-FAQ" id="q' . htmlspecialchars($res["idFAQ"]) . '">' . htmlspecialchars($res["question"]) . '</button>';
+          echo '<div class="reponse-FAQ" id="r' . htmlspecialchars($res["idFAQ"]) . '">';
             echo '<p>' . htmlspecialchars($res["reponse"]) . '</p>';
+          echo '</div>';
           echo '</div>';
         }
       ?>
     </div>
 
-
-
-    
     <script src="script/display.js"></script>
     <script src="script.js"></script>
 </body>

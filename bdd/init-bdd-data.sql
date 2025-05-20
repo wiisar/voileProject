@@ -236,13 +236,11 @@ DELIMITER ;
 
 -- Insertion de données dans la table FAQ
 INSERT INTO FAQ (question, reponse) VALUES
-("aaaaaaaaa", "bbbbbbbb"),
 ("Comment réserver une activité ?", "Pour réserver une activité, vous pouvez nous contacter directement via notre page de réservation ou nous appeler au numéro indiqué sur cette page."),
 ("Quels sont vos horaires d'ouverture ?", "Nos horaires d'ouverture sont disponibles sur la page dédiée de notre site, via l'onglet Informations/Horaires."),
 ("Comment peut-on venir au Centre Nautique ?", "Une piste cyclable longeant la côte vous permet d'arriver à notre centre nautique. Sinon, un parking est présent pour y venir en voiture et le bus 10 vous y dépose directement, à l'arrêt Les Flots."),
 ("Dois-je apporter mon propre matériel ?", "Non, nous fournissons tout le nécessaire pour vos activités. Vous pouvez cependant apporter votre propre matériel si vous le souhaitez."),
 ("Y a-t-il des casiers disponibles pour mes affaires ?", "Le centre est équipé de vestiaires, de douches collectives et individuelles et de casiers avec bracelets-clés pour stocker vos affaires pendant votre pratique.");
-
 
 INSERT INTO DroitsRef (nom) VALUES
 ('Administrateur'),('Adherent'),('Planificateur');
