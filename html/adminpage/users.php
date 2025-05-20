@@ -20,6 +20,16 @@ session_start();
 
 <?php
 if(isset($_SESSION['group']) && $_SESSION['group'] == "Administrateur"){
+    
+    echo "<button id='addUserBtn'>Ajouter un utilisateur</button>";
+    echo '<div id="loginModal" style="display:none;">';
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/login.php';
+    echo '</div>';
+
+
+    // echo '<li class="login-signup"><a href="#">Connexion / Inscription</a></li>';
+            
+    
     $db_host = getenv('MYSQL_HOST') ?: 'localhost';
     $db_port = getenv('MYSQL_PORT') ?: '3306';
     $servername = $db_host . ":" . $db_port;
@@ -72,6 +82,6 @@ else{
     
 ?>
 
-    <script src="script/display.js"></script>
+    <script src="/script/display.js"></script>
 </body>
 </html>
