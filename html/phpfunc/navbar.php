@@ -1,4 +1,3 @@
-php
 <nav>
     <ul>
     <li><a href="/home.php">Accueil</a></li>
@@ -40,7 +39,8 @@ php
             echo '<li class="login-signup"><a href="#">Connexion / Inscription</a></li>';
             echo '</ul>';
             echo '<div id="loginModal" style="display:none;">';
-            include 'phpfunc/login.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/login.php';
+
             echo '</div>';
 
         }
@@ -49,5 +49,12 @@ php
         ?>
         </ul>
 </nav>
+
+<div class="fond-video">
+        <video autoplay muted loop>
+            <source src="/images/video_vague_grise.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+        </video>
+    </div>
 
     

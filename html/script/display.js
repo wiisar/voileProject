@@ -44,5 +44,4 @@ if(logbutton){
 }
 if(userAddBtn){
     userAddBtn.addEventListener("click",displayuseradd);
-
 }

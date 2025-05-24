@@ -1,7 +1,6 @@
 <?php
     session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr"></html>
 <head>
@@ -36,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         die("Connection failed: " . $conn->connect_error);
     }
 
-// Query to insert user
-$stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
-if ($stmt->execute()) {
-    // echo "<p>Ajout réussi </p>";
-} else {
-    // echo "<p>L'ajout de l'utilisateur a échoué.</p>";
-}
-$stmt->close();
-$conn->close();
+    // Query to insert user
+    $stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
+    if ($stmt->execute()) {
+        // echo "<p>Ajout réussi </p>";
+    } else {
+        // echo "<p>L'ajout de l'utilisateur a échoué.</p>";
+    }
+    $stmt->close();
+    $conn->close();
 }
 ?>
 <div class ="logform">
@@ -60,7 +59,7 @@ $conn->close();
     <br>
     <input type="password" name="password" placeholder="Password" required>
     <br>
-    <input type="submit" name="send" value="Submit">
+    <input type="submit" name="action" value="ajouter">
 </form>
 </div>
 

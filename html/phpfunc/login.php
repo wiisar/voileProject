@@ -62,14 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['prenom'] = $row["prenom"];
         // $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
         // echo "<h1>". $_SESSION['droit'] . " Salut";
-        header("Location: home.php");
-        exit();
     } else {
         echo "<p>Invalid username or password.</p>";
     }
     $rqdt->close();
     $stmt->close();
     $conn->close();
+    header("Location: /home.php");
+    exit();
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'signup') {
     $nom= $_POST['nom'];
@@ -107,8 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 ?>
 <div class ="logform">
-
-
 <form method="POST" action="">
     <div class="toggle-container">
         <input type="radio" id="login" name="action" value="login" checked >

@@ -12,9 +12,7 @@
 </head>
 <body>
 
-    <?php include 'phpfunc/navbar.php'; ?>
-
-    
+    <?php include 'phpfunc/navbar.php'; ?>    
     <h1 id="titre-centre-nautique">Contact</h1>
 
     <strong>Téléphone : </strong>06 95 09 74 97<br>
