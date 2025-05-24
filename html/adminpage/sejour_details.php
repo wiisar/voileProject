@@ -5,17 +5,7 @@ if (!isset($_SESSION['group']) || $_SESSION['group'] != "Administrateur" ) {
     exit;
 }
 
-$db_host = getenv('MYSQL_HOST') ?: 'localhost';
-$db_port = getenv('MYSQL_PORT') ?: '3306';
-$servername = $db_host . ":" . $db_port;
-$db_username = getenv('MYSQL_USER') ?: 'bmanem';
-$db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-$dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
-
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
-if ($conn->connect_error) {
-    die("Erreur de connexion: " . $conn->connect_error);
-}
+     include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
 $idSejour = isset($_GET['idSejour']) ? intval($_GET['idSejour']) : 0;
 if ($idSejour <= 0) {
@@ -53,7 +43,7 @@ if (!$sejour) {
     exit;
 }
 
-// Liste des participants (adhérents inscrits)
+// Liste des participants inscrits
 $stmt = $conn->prepare("SELECT A.idAdherent, A.nom, A.prenom FROM Adherents A JOIN Participer P ON A.idAdherent = P.idAdherent WHERE P.idSejour = ?");
 $stmt->bind_param("i", $idSejour);
 $stmt->execute();

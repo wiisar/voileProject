@@ -26,22 +26,9 @@ if(isset($_SESSION['group']) && $_SESSION['group'] == "Administrateur"){
     echo '<div id="userAddModal" style="display:none;">';
     include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/userAdd.php';
     echo '</div>';    
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
-    $servername = $db_host . ":" . $db_port;
-    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
-    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
 
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
-
-    // Create connection
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $sqlUser = "SELECT * FROM Adherents A ";
     $stmt = $conn->prepare($sqlUser);

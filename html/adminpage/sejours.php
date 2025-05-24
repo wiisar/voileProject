@@ -27,17 +27,8 @@ if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SE
     echo '</div>';
 
     // Connexion à la base de données
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
-    $servername = $db_host . ":" . $db_port;
-    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
-    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-    if ($conn->connect_error) {
-        die("Connexion échouée: " . $conn->connect_error);
-    }
 
     $sqlUser = "SELECT * FROM Sejours";
     $stmt = $conn->prepare($sqlUser);
@@ -78,7 +69,6 @@ if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SE
             $resultStage = $stmtStage->get_result();
             $stageInfo = $resultStage->fetch_assoc();
 
-            // Calculer la date de fin
             $dateDebut = new DateTime($sejour["dates"]);
             $dateFin = (clone $dateDebut)->modify('+' . intval($stageInfo["duree"]) . ' days');
 
@@ -96,7 +86,6 @@ if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SE
             $nomBateau = $bateauInfo ? $bateauInfo["nom"] : "Non trouvé";
             $stmtBateau->close();
 
-            // Affichage de la ligne du tableau
             echo '<tr>';
             echo '<td>' . htmlspecialchars($stageInfo["intitule"]) . '</td>';
             echo '<td>' . htmlspecialchars($portInfo["portDepart"]) . '</td>';

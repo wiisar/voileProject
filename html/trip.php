@@ -38,28 +38,8 @@ session_start();
     <h2 id="titre-onglet">Séjours organisés</h2>
 
 <?php
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
-    $servername = $db_host . ":" . $db_port;
-    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
-    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
-
-    // $servername = "localhost:3306";
-    // $username = "bmanem";
-    // $password = "jeXja8-septuf-fitsuj";
-    // $dbname = "bmanem";
-    
-    // echo "<p>Login successful. <br>Welcome, ". $_SESSION["nom"]."!</p>";
-
-    // Create connection
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $sqlTypes = "SELECT DISTINCT intitule 
         FROM Sejours Se 

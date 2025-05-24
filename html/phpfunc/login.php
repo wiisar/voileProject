@@ -12,28 +12,17 @@
 </head>
 <body>
     <?php
+    include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
+
+    
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     // Hash the password
     $password = hash('sha256', $password);
     // Database connection
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
-    $servername = $db_host . ":" . $db_port;
-    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
-    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+    
 
-
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Query to check user credentials
     $stmt = $conn->prepare("SELECT * FROM Adherents WHERE mail = ? AND passwd = ?");
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -80,21 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $date = date('Y-m-d');
     // Hash the password
     $password = hash('sha256', $password);
-    // Database connection
-    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
-    $db_port = getenv('MYSQL_PORT') ?: '3306';
-    $servername = $db_host . ":" . $db_port;
-    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
-    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
 
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Query to insert user
     $stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
     if ($stmt->execute()) {
@@ -104,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
     $stmt->close();
     $conn->close();
+    header("Location: /home.php");
+    exit();
 }
 
 ?>

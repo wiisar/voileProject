@@ -1,18 +1,8 @@
 <?php
-$db_host = getenv('MYSQL_HOST') ?: 'localhost';
-$db_port = getenv('MYSQL_PORT') ?: '3306';
-$servername = $db_host . ":" . $db_port;
-$db_username = getenv('MYSQL_USER') ?: 'bmanem';
-$db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-$dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
-// Connexion BDD
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
-if ($conn->connect_error) {
-    die("Erreur de connexion: " . $conn->connect_error);
-}
 
-// Traitement du formulaire
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'ajouter_sejour') {
     $capacite = $_POST['capacite'];
     $idPortsDepart = $_POST['idPortsDepart'];

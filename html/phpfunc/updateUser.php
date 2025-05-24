@@ -7,19 +7,8 @@ if (!isset($_SESSION['group']) || $_SESSION['group'] !== "Administrateur") {
 }
 
 // Connexion à la BDD
-$db_host = getenv('MYSQL_HOST') ?: 'localhost';
-$db_port = getenv('MYSQL_PORT') ?: '3306';
-$servername = $db_host . ":" . $db_port;
-$db_username = getenv('MYSQL_USER') ?: 'bmanem';
-$db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
-$dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-// Vérifie la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Récupère les données du formulaire
 $idAdherent = intval($_POST['idAdherent']);
