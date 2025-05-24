@@ -69,7 +69,7 @@ if(isset($_SESSION['group']) && $_SESSION['group'] == "Administrateur"){
             echo '<td>' . htmlspecialchars($res["mail"]) . '</td>';
             echo '<td>' . htmlspecialchars($res["dateAdhesion"]) . '</td>';
             echo '<td><input type="checkbox" name="edit_user[]" value="' . htmlspecialchars($res["idAdherent"]) . '"></td>';
-            echo '<td><input type="checkbox" name="delete_user[]" value="' . htmlspecialchars($res["idAdherent"]) . '"></td>';
+            echo '<td><button class="delete-btn" id="' . htmlspecialchars($res["idAdherent"]) . '">×</button></td>';
             echo '</tr>';
         }
         echo '</table>';

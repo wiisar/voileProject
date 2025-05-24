@@ -71,6 +71,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->close();
     $conn->close();
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'signup') {
+    $nom= $_POST['nom'];
+    $prenom= $_POST['prenom'];
+    $mail= $_POST['mail'];
+    $password = $_POST['password'];
+    $date = date('Y-m-d');
+    // Hash the password
+    $password = hash('sha256', $password);
+    // Database connection
+    $db_host = getenv('MYSQL_HOST') ?: 'localhost';
+    $db_port = getenv('MYSQL_PORT') ?: '3306';
+    $servername = $db_host . ":" . $db_port;
+    $db_username = getenv('MYSQL_USER') ?: 'bmanem';
+    $db_password = getenv('MYSQL_PASSWORD') ?: 'jeXja8-septuf-fitsuj';
+    $dbname = getenv('MYSQL_DATABASE') ?: 'bmanem';
+
+    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Query to insert user
+    $stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
+    if ($stmt->execute()) {
+        // echo "<p>Ajout réussi </p>";
+    } else {
+        // echo "<p>L'ajout de l'utilisateur a échoué.</p>";
+    }
+    $stmt->close();
+    $conn->close();
+}
+
 ?>
 <div class ="logform">
 
@@ -94,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <br>
         <input type="text" name="nom" placeholder="Nom">
         <br>
-        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="mail" placeholder="Email">
         <br>
         
         

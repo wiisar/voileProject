@@ -49,23 +49,15 @@ $conn->close();
 }
 ?>
 <div class ="logform">
-
-
 <form method="POST" action="">
-    <div class="toggle-container">
-        <input type="radio" id="ajouter" name="action" value="ajouter" checked >
-        <label for="login" class="log-radio-label">Ajouter</label>
-        <input type="radio" id="signup" name="action" value="signup" >
-        <label for="signup" class="log-radio-label">Modifier</label>
-    </div>
     <br>
     <input type="text" name="nom" placeholder="nom" required>
     <br>
     <input type="text" name="prenom" placeholder="prenom" required>
     <br>
-    <input type="text" name="mail" placeholder="mail" required>
+    <input type="email" name="mail" placeholder="mail" required>
+    <span id="email-validation-message" style="display: none;"></span>
     <br>
-
     <input type="password" name="password" placeholder="Password" required>
     <br>
     <input type="submit" name="send" value="Submit">
@@ -73,15 +65,21 @@ $conn->close();
 </div>
 
 <script>
-    document.querySelectorAll('input[name="action"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.value === 'signup') {
-                document.getElementById('signup-fields').style.display = 'block';
+        document.querySelector('input[name="mail"]').addEventListener('input', function() {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const validationMessage = document.getElementById('email-validation-message');
+            if (email && !emailRegex.test(email)) {
+                validationMessage.style.display='block';
+                validationMessage.textContent = "Please enter a valid email address";
+                validationMessage.style.color = "red";
+                this.setCustomValidity("Invalid email format");
             } else {
-                document.getElementById('signup-fields').style.display = 'none';
+                validationMessage.textContent = "";
+                validationMessage.style.display='none';
+                this.setCustomValidity("");
             }
         });
-    });
 </script>
 </body>
 </html>
