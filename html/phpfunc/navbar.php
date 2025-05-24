@@ -15,13 +15,15 @@
     <?php
             echo '<div class="login-group">';
 
-        if (isset($_SESSION["group"]) && $_SESSION["group"] == "Administrateur") {
+        if (isset($_SESSION["group"]) && ($_SESSION["group"] == "Administrateur" || $_SESSION["group"] == "Planificateur")) {
             echo '<li class="dropdown dropdown-admin">';
-            echo '<a class="dropbtn-login" href="admin.php">Admin</a>';
+            echo '<a class="dropbtn-login" href="#">Administration</a>';
             echo '<div class="dropdown-content">';
-            echo '<a href="adminpage/users.php">Gestion utilisateurs</a>';
-            echo '<a href="profile.php">Gestion Séjours</a>';
-            echo '<a href="profile.php">Paramétres</a>';
+            if ($_SESSION["group"] == "Administrateur") {
+                echo '<a href="/adminpage/users.php">Gestion utilisateurs</a>';
+            }
+            echo '<a href="/adminpage/manageSejour.php">Gestion Séjours</a>';
+            // echo '<a href="#">Paramétres</a>';
             echo '</div>';
             echo '</li>';
         }

@@ -1,47 +1,36 @@
-const logbutton = document.querySelector(".login-signup a");
-const faqbutton = document.getElementsByClassName("question-FAQ");
-const userAddBtn = document.getElementById("addUserBtn");
-
-function displaylogin(){
-    let displaylog = document.getElementById("loginModal");
-    // console.log(displaylog.style.display);
-    if (displaylog.style.display === 'block') {
-        displaylog.style.display = 'none';
-    } else {
-        displaylog.style.display = 'block';
-        // console.log(displaylog.style.display);
+// Fonctions de bascule génériques
+function toggleDisplayById(id) {
+    const elem = document.getElementById(id);
+    if (elem) {
+        elem.style.display = (elem.style.display === 'block') ? 'none' : 'block';
     }
 }
 
-function displayuseradd(){
-    let displaylog = document.getElementById("userAddModal");
-    // console.log(displaylog.style.display);
-    if (displaylog.style.display === 'block') {
-        displaylog.style.display = 'none';
-    } else {
-        displaylog.style.display = 'block';
-        // console.log(displaylog.style.display);
-    }
+function toggleFAQ(questionId) {
+    const answerId = `r${questionId.substring(1)}`; // réponse correspondante
+    toggleDisplayById(answerId);
 }
 
+// Gestionnaires d'événements
+document.addEventListener("DOMContentLoaded", () => {
+    const logButton = document.querySelector(".login-signup a");
+    const faqButtons = document.getElementsByClassName("question-FAQ");
+    const userAddBtn = document.getElementById("addUserBtn");
+    const sejAddBtn = document.getElementById("addSejBtn");
 
-function displayFAQ(toDisplay) {
-    let question = document.getElementById(toDisplay);
-    let answer = document.getElementById(`r${toDisplay.substring(1)}`); // Assuming the answer ID is 'r' + question ID without 'q'
-    
-    if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-    } else {
-        answer.style.display = 'block';
+    if (logButton) {
+        logButton.addEventListener("click", () => toggleDisplayById("loginModal"));
     }
-}
 
-Array.from(faqbutton).forEach(button => {
-    button.addEventListener("click", () => displayFAQ(button.id));
+    if (userAddBtn) {
+        userAddBtn.addEventListener("click", () => toggleDisplayById("userAddModal"));
+    }
+
+    if (sejAddBtn) {
+        sejAddBtn.addEventListener("click", () => toggleDisplayById("addSejour"));
+    }
+
+    Array.from(faqButtons).forEach(button => {
+        button.addEventListener("click", () => toggleFAQ(button.id));
+    });
 });
-if(logbutton){
-    logbutton.addEventListener("click",displaylogin);
-}
-if(userAddBtn){
-    userAddBtn.addEventListener("click",displayuseradd);
-}
