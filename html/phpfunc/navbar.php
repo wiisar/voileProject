@@ -14,9 +14,11 @@ php
     <li><a href="/trip.php">Séjours organisés</a></li>
     <li><a href="/contact.php">Contact</a></li>
     <?php
+            echo '<div class="login-group">';
+
         if (isset($_SESSION["group"]) && $_SESSION["group"] == "Administrateur") {
             echo '<li class="dropdown dropdown-admin">';
-            echo ' <a class="dropbtn-login" href="admin.php">Admin</a>';
+            echo '<a class="dropbtn-login" href="admin.php">Admin</a>';
             echo '<div class="dropdown-content">';
             echo '<a href="adminpage/users.php">Gestion utilisateurs</a>';
             echo '<a href="profile.php">Gestion Séjours</a>';
@@ -40,7 +42,10 @@ php
             echo '<div id="loginModal" style="display:none;">';
             include 'phpfunc/login.php';
             echo '</div>';
+
         }
+        echo '</div>';
+
         ?>
         </ul>
 </nav>

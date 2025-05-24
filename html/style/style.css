@@ -109,7 +109,8 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 /* Pour pousser le bouton Connexion / Inscription à droite */
-.login-signup ,.dropdown-login ,.dropdown-admin{
+.login-group{
+    display: flex;
     margin-left: auto;
 }
 
