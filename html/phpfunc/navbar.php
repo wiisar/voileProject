@@ -22,7 +22,7 @@
             if ($_SESSION["group"] == "Administrateur") {
                 echo '<a href="/adminpage/users.php">Gestion utilisateurs</a>';
             }
-            echo '<a href="/adminpage/manageSejour.php">Gestion Séjours</a>';
+            echo '<a href="/adminpage/sejours.php">Gestion Séjours</a>';
             // echo '<a href="#">Paramétres</a>';
             echo '</div>';
             echo '</li>';

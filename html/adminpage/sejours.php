@@ -55,7 +55,7 @@ if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SE
             <th>Capacité</th>
             <th>Prix</th>
             <th>Bateau utilisé</th>
-            <th>Modification</th>
+            <th>Gérer</th>
             <th>Suppression</th>
         </tr>';
 
@@ -106,12 +106,13 @@ if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SE
             echo '<td>' . htmlspecialchars($sejour["capacite"]) . '</td>';
             echo '<td>' . htmlspecialchars($sejour["prix"]) . ' €</td>';
             echo '<td>' . htmlspecialchars($nomBateau) . '</td>';
-            echo '<td>
-                <form style="display:inline;">
-                    <input type="hidden" name="idSejour" value="' . htmlspecialchars($sejour['idSejour']) . '">
-                    <button type="button" class="edit-btn" data-id="' . htmlspecialchars($sejour['idSejour']) . '">Mettre à jour</button>
-                </form>
-                </td>';
+        
+                echo '<td>
+                    <form method="get" action="/adminpage/sejour_details.php" style="display:inline;">
+                        <input type="hidden" name="idSejour" value="' . htmlspecialchars($sejour['idSejour']) . '">
+                        <button type="submit" class="manage-btn">Gérer</button>
+                    </form>
+                    </td>';
             echo '<td>
                 <form method="post" action="/phpfunc/deleteSejour.php" style="display:inline;" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer ce séjour ?\');">
                     <input type="hidden" name="idSejour" value="' . htmlspecialchars($sejour["idSejour"]) . '">

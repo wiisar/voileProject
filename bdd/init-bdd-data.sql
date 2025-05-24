@@ -198,11 +198,17 @@ CREATE TABLE Encadrer(
     CONSTRAINT Encadrer_Sejour0_FK FOREIGN KEY (idSejour) REFERENCES Sejours(idSejour)
 )ENGINE=InnoDB;
 
-CREATE TABLE sessions (
-    session_id VARCHAR(255) PRIMARY KEY,
-    session_data TEXT NOT NULL,
-    last_access TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+#------------------------------------------------------------
+# Table: Participer
+#------------------------------------------------------------
+
+CREATE TABLE Participer (
+    idAdherent INT NOT NULL,
+    idSejour INT NOT NULL,
+    PRIMARY KEY (idAdherent, idSejour),
+    CONSTRAINT Participer_Adherents_FK FOREIGN KEY (idAdherent) REFERENCES Adherents(idAdherent),
+    CONSTRAINT Participer_Sejour_FK FOREIGN KEY (idSejour) REFERENCES Sejours(idSejour)
+) ENGINE=InnoDB;
 
 
 DELIMITER //
@@ -342,3 +348,10 @@ INSERT INTO Encadrer (idAdherent, idSejour) VALUES
 (1, 1),
 (2, 2),
 (2, 3);
+
+-- Insertion de données dans la table Participer
+INSERT INTO Participer (idAdherent, idSejour) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);

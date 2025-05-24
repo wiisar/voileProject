@@ -18,24 +18,21 @@ button, .btn-primary, .btn-secondary, .btn-secondaire {
     font-weight: bold;
     cursor: pointer;
     border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.2s;
 }
 
 button:hover, .btn-primary:hover, .btn-secondary:hover, .btn-secondaire:hover {
     opacity: 0.9;
     transform: scale(1.05);
-    transition: all 0.2s;
 }
 
-.btn-secondaire {
-    background-color: #666;
-    margin: 10px;
-}
+.btn-secondaire { background-color: #666; margin: 10px; }
+.btn-secondary { background-color: #444; }
 
-.btn-secondary {
-    background-color: #444;
-}
-
-input, select, button {
+input, select {
     padding: 10px;
     border-radius: 4px;
     font-size: 16px;
@@ -55,7 +52,27 @@ ul {
     z-index: 1000;
 }
 
-/* Élément de la liste */
+ul.participants-list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+ul.participants-list li {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    box-sizing: border-box;
+    max-width: calc(33.33% - 20px);
+    background: #333;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 li {
     position: relative;
 }
@@ -71,7 +88,6 @@ li a, .dropbtn {
     white-space: nowrap;
 }
 
-/* Hover classique */
 li a:hover, .dropdown:hover .dropbtn {
     background-color: #7ec9d3;
     color: black;
@@ -103,32 +119,18 @@ li a:hover, .dropdown:hover .dropbtn {
     color: black;
 }
 
-/* Affichage du menu déroulant au survol */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.dropdown:hover .dropdown-content { display: block; }
 
-/* Pour pousser le bouton Connexion / Inscription à droite */
-.login-group{
+.login-group {
     display: flex;
     margin-left: auto;
 }
 
-li:last-child {
-    border-right: none;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover{
-    background-color: #7ec9d3;
-}
+li:last-child { border-right: none; }
+li a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
+li a:hover { background-color: #7ec9d3; }
 
-/* Nom du centre natique */
+/* Titres */
 #titre-centre-nautique {
     text-align: center;
     font-family: 'Poppins';
@@ -137,69 +139,54 @@ li a:hover{
     margin-bottom: 20px;
     margin-top: 100px;
 }
-
-/* Onglets */
-#titre-onglet {
-    text-align: center;
-}
+#titre-onglet { text-align: center; }
 
 /* Fond vidéo */
 .fond-video {
-    position: fixed; /* Positionne la vidéo de manière fixe */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Hauteur de la fenêtre du navigateur */
-    z-index: -1; /* Place la vidéo derrière le contenu */
-    filter: brightness(0.7); /* Réduit la luminosité pour assombrir la vidéo */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    z-index: -1;
+    filter: brightness(0.7);
 }
 .fond-video video {
-    width: 100%; /* La vidéo prend toute la largeur de la fenêtre */
-    height: 100%; /* La vidéo prend toute la hauteur de la fenêtre */
-    object-fit: cover; /* Permet à la vidéo de couvrir toute la surface sans déformation */
+    width: 100%; height: 100%;
+    object-fit: cover;
 }
 
 /* Grille photos de la page d'accueil */
 .grille-photo {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 colonnes de largeur égale */
-    grid-gap: 10px; /* Espacement entre les photos */
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
     width: 80%;
-    max-width: 1200px; /* Largeur maximale du grid */
-    margin: 0 auto; /* Centre le bloc horizontalement */
-    transition: box-shadow 0.3s ease; /* Transition douce lors du survol */
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: box-shadow 0.3s ease;
     position: relative;
 }
 .grille-photo img {
     width: 100%;
-    height: 200px; /* Fixe une hauteur pour les images */
-    object-fit: cover; /* Assure que l'image conserve ses proportions tout en remplissant la taille donnée */
-    border-radius: 8px; /* Coins arrondis */
-    border: 3px solid #7ec9d3; /* Bordure autour des images avec une couleur douce */
-    position: relative; /* Positionner les légendes par rapport à l'image */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid #7ec9d3;
+    position: relative;
 }
-.grille-photo img:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Ombre plus marquée au survol */
-}
-figure {
-    text-align: center; /* Centre la légende sous l'image */
-    padding: 10px; /* Espacement autour du texte de la légende */
-}
+.grille-photo img:hover { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); }
+figure { text-align: center; padding: 10px; }
 figure figcaption {
-    display: inline-block; /* Pour limiter la largeur au texte */
-    background-color: #333; /* Fond bleu sous le texte */
-    padding: 5px 10px; /* Ajoute de l'espace autour du texte */
-    border-radius: 4px; /* Arrondit légèrement les coins */
-    color: white; /* Texte de la légende en blanc */
-    font-family: 'Poppins'; /* Police pour le texte de la légende */
-    font-size: 16px; /* Taille du texte de la légende */
+    display: inline-block;
+    background-color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 16px;
 }
 
-div.cards-container, div.card{
-    /* border: 3px solid #3f87a6; */
-    border-radius: 5px;
-}
-
+/* Cartes */
+div.cards-container, div.card { border-radius: 5px; }
 .card {
     background-color: #333;
     color: black;
@@ -209,14 +196,12 @@ div.cards-container, div.card{
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     background: linear-gradient(0.25turn, #bbeef5, #7ec9d3, #3f87a6);
-
 }
-
 .card:hover {
     transform: scale(1.05);
     background: linear-gradient(0.25turn, #bbeef5, #7ec9d3, #3f87a6);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);}
-
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
 .cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -224,13 +209,14 @@ div.cards-container, div.card{
     padding: 20px;
 }
 
-.display-sejours{
+.display-sejours {
     display: flex;
     justify-content: center;
     gap: 5px;
     padding: 5px;
 }
 
+/* Formulaires */
 .logform {
     display: flex;
     flex-direction: column;
@@ -249,14 +235,12 @@ div.cards-container, div.card{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .logform .toggle-container {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
 }
-
 .logform .toggle-container label {
     display: inline-block;
     padding: 10px 20px;
@@ -267,36 +251,25 @@ div.cards-container, div.card{
     cursor: pointer;
     transition: all 0.2s;
 }
-
-.logform .toggle-container input[type="radio"] {
-    display: none;
-}
-
+.logform .toggle-container input[type="radio"] { display: none; }
 .logform .toggle-container input[type="radio"]:checked + label {
     background-color: #7ec9d3;
     transform: scale(1.05);
 }
-
 .logform h2 {
     margin-bottom: 20px;
     font-family: 'Poppins';
     font-size: 24px;
     color: #7ec9d3;
 }
-
 .logform input {
-    /* width: 100%; */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #444;
     border-radius: 4px;
     font-size: 16px;
 }
-
 .logform button {
-    /* width: 100%; */
-    padding: 10px;
-    /* background-color: #444; */
     color: white;
     font-weight: bold;
     border: none;
@@ -304,29 +277,23 @@ div.cards-container, div.card{
     cursor: pointer;
     font-size: 16px;
 }
-
 .logform button:hover {
     opacity: 0.9;
     transform: scale(1.05);
-    transition: all 0.2s;
 }
 
 @media (max-width: 768px) {
-    .logform {
-        width: 95%;
-        padding: 15px;
-    }
+    .logform { width: 95%; padding: 15px; }
 }
 
-
-#loginModal , #userAddModal{
+/* Modals */
+#loginModal, #userAddModal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1001; /* Increased z-index to ensure it appears above the blur effect */
-    background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent background */
+    z-index: 1001;
+    background-color: rgba(51, 51, 51, 0.9);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -334,54 +301,38 @@ div.cards-container, div.card{
     max-width: 400px;
     color: white;
 }
-
-#loginModal.active , #userAddModal.active{
-    display: block;
-}
-.log-panel-info{
-    font-size: 12px; /* Taille de la police */
-}
+#loginModal.active, #userAddModal.active { display: block; }
+.log-panel-info { font-size: 12px; }
 body.modal-active::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Blur effect background */
-    backdrop-filter: blur(5px); /* Apply blur effect */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     z-index: 999;
 }
 
+/* FAQ */
 .bloc-FAQ {
     max-width: 800px;
-    margin: 60px auto 60px auto; /* Centré avec un espace depuis le haut */
+    margin: 60px auto 60px auto;
     padding: 20px;
     background-color: #222;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    flex-direction: column; /* Organise les questions verticalement */
-    align-items: center; /* Centre les questions horizontalement */
+    flex-direction: column;
+    align-items: center;
 }
-
-/* Style de base pour cacher les réponses */
 .reponse-FAQ {
     display: none;
     padding-bottom: 50px;
     color: white;
-    /* background-color: #f9f9f9; */
     border-left: 3px solid #7ec9d3;
-    max-height: 0;  /* Initialement caché */
+    max-height: 0;
     transition: max-height 0.3s ease-out, padding 0.3s ease-out;
 }
-
-/* Lorsque la réponse est ouverte */
-.reponse-FAQ.open {
-    display: block;
-    /* padding: 10px; Ajouter plus d'espace autour du texte de la réponse */
-}
-
-/* Style pour les boutons de la FAQ */
+.reponse-FAQ.open { display: block; }
 .question-FAQ {
     background-color: #7ec9d3;
     color: white;
@@ -391,54 +342,163 @@ body.modal-active::before {
     text-align: left;
     cursor: pointer;
     border: none;
-    width: 100%; /* S'étend sur toute la largeur disponible */
-    max-width: 600px; /* Limite la largeur maximale des questions */
+    width: 100%;
+    max-width: 600px;
     font-size: 18px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
+.question-FAQ:hover { background-color: #66b3b1; }
 
-/* Effet hover pour les questions */
-.question-FAQ:hover {
-    background-color: #66b3b1;
-}
-
-.user-tab{
+/* Table utilisateur */
+.user-tab {
     justify-content: center;
     align-items: center;
     margin: 30px auto;
     width: 100%;
+}
+.user-tab table {
+    border-collapse: collapse;
+    background-color: #222;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.user-tab th, .user-tab td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #444;
+    text-align: center;
+}
+.user-tab th {
+    background-color: #7ec9d3;
+    color: #222;
+    font-weight: bold;
+    font-size: 18px;
+}
+.user-tab tr:last-child td { border-bottom: none; }
+.user-tab tr:hover {
+    background-color: #333;
+    transition: background 0.2s;
+}
 
-    table {
-        border-collapse: collapse;
-        background-color: #222;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        margin: 0 auto;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-        border-radius: 8px;
-        overflow: hidden;
-    }
+/* Détails séjour */
+.details-flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 60px auto 40px auto;
+    max-width: 1100px;
+}
+.sejour-info-box {
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    padding: 30px 30px 20px 30px;
+    color: #fff;
+    min-width: 300px;
+    max-width: 350px;
+    flex: 1 1 350px;
+}
+.sejour-info-box h1 {
+    color: #7ec9d3;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+.sejour-info-box p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.participants-panel {
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    padding: 30px 30px 20px 30px;
+    color: #fff;
+    flex: 2 1 500px;
+    min-width: 320px;
+    max-width: 600px;
+}
+.participants-panel h2 {
+    color: #7ec9d3;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.participants-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.participants-list li {
+    background: #333;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.participants-list form { margin: 0; }
+.participants-panel form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+}
+.participants-panel select, .participants-panel button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.participants-panel button {
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.participants-panel a {
+    color: #7ec9d3;
+    text-decoration: none;
+    font-weight: bold;
+}
+.participants-panel a:hover { text-decoration: underline; }
 
-    th, td {
-        padding: 12px 20px;
-        border-bottom: 1px solid #444;
-        text-align: center;
+@media (max-width: 900px) {
+    .details-flex-container {
+        flex-direction: column;
+        gap: 20px;
+        max-width: 98vw;
     }
+    .sejour-info-box, .participants-panel {
+        max-width: 98vw;
+        min-width: unset;
+    }
+}
 
-    th {
-        background-color: #7ec9d3;
-        color: #222;
-        font-weight: bold;
-        font-size: 18px;
-    }
-
-    tr:last-child td {
-        border-bottom: none;
-    }
-
-    tr:hover {
-        background-color: #333;
-        transition: background 0.2s;
-    }
+/* Autocomplete */
+#addAdhForm { position: relative; }
+.autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #222;
+    border: 1px solid #7ec9d3;
+    border-radius: 0 0 6px 6px;
+    z-index: 10;
+    max-height: 180px;
+    overflow-y: auto;
+    width: 100%;
+    min-width: 220px;
+    box-sizing: border-box;
+}
+.autocomplete-item {
+    padding: 7px 12px;
+    cursor: pointer;
+    color: #fff;
+}
+.autocomplete-item:hover {
+    background: #7ec9d3;
+    color: #222;
 }

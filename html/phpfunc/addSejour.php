@@ -15,12 +15,11 @@ if ($conn->connect_error) {
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'ajouter_sejour') {
     $capacite = $_POST['capacite'];
-    $prix = $_POST['prix'];
     $idPortsDepart = $_POST['idPortsDepart'];
     $idPortsArriver = $_POST['idPortsArriver'];
     $dateDebut = $_POST['dateDebut'];
     $idStage = $_POST['idStage'];
-    $idBateau = $_POST['idBateau'];
+    // $idBateau = $_POST['idBateau']; // Ne sert à rien ici
 
     // Validation des références
     $checkPortsQuery = "SELECT COUNT(*) as count FROM Ports WHERE idPort = ? OR idPort = ?";
@@ -37,45 +36,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stageResult = $checkStage->get_result();
     $stageCount = $stageResult->fetch_assoc()['count'];
 
-    $checkBateauQuery = "SELECT COUNT(*) as count FROM Bateaux WHERE idBateau = ?";
-    $checkBateau = $conn->prepare($checkBateauQuery);
-    $checkBateau->bind_param("i", $idBateau);
-    $checkBateau->execute();
-    $bateauResult = $checkBateau->get_result();
-    $bateauCount = $bateauResult->fetch_assoc()['count'];
-
-    if ($portCount < 2 || $stageCount < 1 || $bateauCount < 1) {
-        echo "<p style='color:red;'>Erreur: Ports, stage ou bateau invalides.</p>";
+    if ($portCount < 2 || $stageCount < 1) {
+        echo "<p style='color:red;'>Erreur: Ports ou stage invalides.</p>";
     } else {
-        // Récupérer la durée du stage
-        $getDureeQuery = "SELECT duree FROM Stages WHERE idStage = ?";
-        $getDuree = $conn->prepare($getDureeQuery);
-        $getDuree->bind_param("i", $idStage);
-        $getDuree->execute();
-        $dureeResult = $getDuree->get_result();
-        $dureeRow = $dureeResult->fetch_assoc();
-        $duree = $dureeRow['duree']; // Supposons que la colonne s'appelle 'duree' (en jours)
-        $getDuree->close();
+        // Récupérer la durée et le prix max du stage
+        $getStageQuery = "SELECT duree, prixMax FROM Stages WHERE idStage = ?";
+        $getStage = $conn->prepare($getStageQuery);
+        $getStage->bind_param("i", $idStage);
+        $getStage->execute();
+        $stageResult = $getStage->get_result();
+        $stageRow = $stageResult->fetch_assoc();
+        $duree = $stageRow['duree'];
+        $prix = $stageRow['prixMax'];
+        $getStage->close();
 
-        // Calculer la date de fin
-        $dateDebutDateTime = new DateTime($dateDebut);
-        $dateDebutDateTime->modify("+$duree days");
-        $dateFin = $dateDebutDateTime->format('Y-m-d');
 
         // Insertion dans Séjours
-        $insertSejour = $conn->prepare("INSERT INTO Sejours (capacite, prix, idPortsDepart, idPortsArriver, dateDebut, dateFin, idStage, idBateau) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $insertSejour->bind_param("idiissii", $capacite, $prix, $idPortsDepart, $idPortsArriver, $dateDebut, $dateFin, $idStage, $idBateau);
+        $insertSejour = $conn->prepare("INSERT INTO Sejours (capacite, prix, idPortsDepart, idPortsArriver, dates, idStage) VALUES (?, ?, ?, ?, ?, ?)");
+        $insertSejour->bind_param("idiisi", $capacite, $prix, $idPortsDepart, $idPortsArriver, $dateDebut, $idStage);
         if ($insertSejour->execute()) {
             echo "<p style='color:green;'>Séjour ajouté avec succès !</p>";
         } else {
             echo "<p style='color:red;'>Erreur lors de l'ajout du séjour.</p>";
+            echo "<p style='color:red;'>Erreur SQL : " . $insertSejour->error . "</p>";
         }
         $insertSejour->close();
     }
 
     $checkPorts->close();
     $checkStage->close();
-    $checkBateau->close();
 }
 
 // Récupération des données pour les listes déroulantes
@@ -120,7 +109,7 @@ $bateaux = $conn->query("SELECT idBateau, nom FROM Bateaux");
         <input type="hidden" name="dateFin"> <!-- Plus besoin de demander -->
 
         <input type="number" name="capacite" placeholder="Capacité" required>
-        <input type="number" name="prix" placeholder="Prix" step="0.01" required>
+        <!-- <input type="number" name="prix" placeholder="Prix" step="0.01" required> -->
 
         <button type="submit">Ajouter</button>
         <button type="button" onclick="document.getElementById('addSejour').style.display='none';">Annuler</button>
