@@ -282,14 +282,12 @@ INSERT INTO Bateaux (nom, dateAchat, idModele) VALUES
 ('Paddle 1', '2020-08-25',8),
 ('Surf 1', '2020-08-25',7);
 
-
 -- Insertion de données dans la table Stages
 INSERT INTO Stages (intitule, duree, niveau, prixMin, prixMax, idModele) VALUES
 ('Initiation à la voile', '02:00:00', 1, 50.00, 70.00,1),
 ('Perfectionnement', '03:00:00', 2, 80.00, 100.00,2),
 ('Voile en équipage', '04:00:00', 3, 120.00, 150.00,3),
 ('Navigation côtière', '05:00:00', 4, 180.00, 220.00,4);
-
 
 -- Insertion de données dans la table Brevets
 INSERT INTO Brevets (intitule, encadrement, idStage) VALUES
@@ -304,6 +302,7 @@ INSERT INTO Ports (emplacements) VALUES
 ('Port de Brest'),
 ('Port de Marseille'),
 ('Port de Nice');
+
 -- Insertion de données dans la table Sejour
 INSERT INTO Sejours (capacite, prix, idPortsDepart, idPortsArriver, dates, idStage) VALUES
 (5, 150.00, 1, 2,'2023-07-01',1),
@@ -341,7 +340,6 @@ INSERT INTO Necessiter (idBrevet, idStage) VALUES
 (2, 2),
 (3, 3),
 (4, 4);
-
 
 -- Insertion de données dans la table Encadrer
 INSERT INTO Encadrer (idAdherent, idSejour) VALUES

@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/bddconnexion.php';
 
 
-    // Query to insert user
     $stmt = $conn->prepare("INSERT INTO Adherents (nom, prenom, mail, dateAdhesion, passwd) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $nom, $prenom, $mail, $date, $password);
     if ($stmt->execute()) {

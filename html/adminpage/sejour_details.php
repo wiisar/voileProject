@@ -78,7 +78,7 @@ $stmt->close();
             <p><strong>Date :</strong> <?= htmlspecialchars($sejour['dates']) ?></p>
             <p><strong>Capacité :</strong> <?= htmlspecialchars($sejour['capacite']) ?></p>
             <p><strong>Nombre de participants :</strong> <?= $nbParticipants ?></p>
-            <p style="margin-top:30px;"><a href="<?= isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '/adminpage/sejours.php' ?>">&larr; Retour</a></p>
+            <p><a href="<?= isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '/adminpage/sejours.php' ?>">&larr; Retour</a></p>
         </div>
         <div class="participants-panel">
             <h2>Ajouter un participant</h2>
@@ -92,7 +92,6 @@ $stmt->close();
             <h2>Participants inscrits</h2>
             <ul class="participants-list">
                 <?php while ($row = $participants->fetch_assoc()){
-
                  ?>
                     <li>
                         <?= htmlspecialchars($row['prenom'] . ' ' . $row['nom']) ?>
