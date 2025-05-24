@@ -9,7 +9,7 @@
             <a href="/horaires.php">Horaires</a>
         </div>
     </li>
-    <li><a href="/reservation.php">Réserver en ligne</a></li>
+    <!-- <li><a href="/reservation.php">Réserver en ligne</a></li> -->
     <li><a href="/trip.php">Séjours organisés</a></li>
     <li><a href="/contact.php">Contact</a></li>
     <?php

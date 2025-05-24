@@ -79,6 +79,8 @@ $stmt->close();
 
 </head>
 <body>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpfunc/navbar.php';?>
+    
     <div class="details-flex-container">
         <div class="sejour-info-box">
             <h1>Détails du séjour</h1>
@@ -86,7 +88,7 @@ $stmt->close();
             <p><strong>Date :</strong> <?= htmlspecialchars($sejour['dates']) ?></p>
             <p><strong>Capacité :</strong> <?= htmlspecialchars($sejour['capacite']) ?></p>
             <p><strong>Nombre de participants :</strong> <?= $nbParticipants ?></p>
-            <p style="margin-top:30px;"><a href="/adminpage/sejours.php">&larr; Retour à la liste des séjours</a></p>
+            <p style="margin-top:30px;"><a href="<?= isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '/adminpage/sejours.php' ?>">&larr; Retour</a></p>
         </div>
         <div class="participants-panel">
             <h2>Ajouter un participant</h2>

@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $_SESSION['username'] = $row["mail"];
         $_SESSION['nom'] = $row["nom"];
         $_SESSION['prenom'] = $row["prenom"];
+        $_SESSION['idAdherent'] = $row["idAdherent"];
         // $_SESSION['success_message'] = "Bienvenue " . $row["nom"] . " " . $row["prenom"];
         // echo "<h1>". $_SESSION['droit'] . " Salut";
     } else {
