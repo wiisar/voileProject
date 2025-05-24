@@ -59,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <br>
     <input type="password" name="password" placeholder="Password" required>
     <br>
-    <input type="submit" name="action" value="ajouter">
+    <button type="submit" name="action" value="ajouter">Ajouter</button>
+    <button type="button" onclick="document.getElementById('userAddModal').style.display='none';">Annuler</button>
 </form>
 </div>
 
