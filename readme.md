@@ -66,7 +66,7 @@ This script will ask for your ftp password on ZZZ.
 
 and after you can visit the website http://[username].zzz.bordeaux-inp.fr/home.php
 ```text
-github_version/
+VoileProject/
 ├── bdd/                       # Scripts SQL pour la base de données
 │   ├── drop-bdd.sql           # Script pour supprimer toutes les tables/triggers
 │   ├── init-bdd-structure.sql # Script pour créer la structure de la base (tables, triggers)
@@ -102,6 +102,4 @@ github_version/
 ├── push_tftp.sh               # Script pour envoyer le site sur le serveur ZZZ
 ├── readme.md                  # Documentation et instructions d'installation/utilisation
 └── ...                        # Autres fichiers racines éventuels
-
-
 ```
