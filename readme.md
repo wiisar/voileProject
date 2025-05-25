@@ -33,12 +33,12 @@ If you want to run the website at ENSEIRB-MATMECA you have to :
 ```bash
 git clone https://github.com/wiisar/voileProject.git
 ```
-5. Create a database if needed:
+2. Create a database if needed:
 ```bash
 mysql -u your-username -p -e "CREATE DATABASE voile_db;"
 ```
 
-6. Import the database structure and data:
+3. Import the database structure and data:
 ```bash
 # Import structure
 mysql -u your-username -p voile_db < bdd/1-init-bdd-structure.sql
@@ -47,7 +47,7 @@ mysql -u your-username -p voile_db < bdd/1-init-bdd-structure.sql
 mysql -u your-username -p voile_db < bdd/2-init-bdd-data.sql
 ```
 
-7. Update the database connection settings in bddconnexion.php:
+4. Update the database connection settings in bddconnexion.php:
 ```php
 // Open bddconnexion.php and modify these credentials
 $host = "localhost"; // or specific ENSEIRB database host
@@ -55,7 +55,7 @@ $user = "your-username"; // your ENSEIRB username
 $password = "your-password"; // your database password
 $database = "voile_db"; // the name of your database
 ```
-8. Push html code on zzz serveur:
+5. Push html code on zzz serveur:
 
 You can use this command to send html directory on your zzz.bordeaux-inp.fr server:
 
