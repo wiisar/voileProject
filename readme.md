@@ -1,7 +1,6 @@
 ***Project VOILE***
-*** Auteurs ***
-Salome RODRIGUEZ
-Benjamin MANEM
+- Salome RODRIGUEZ
+- Benjamin MANEM
 
 ## Running with Docker
 To run the website you have to install docker :
@@ -32,7 +31,7 @@ If you want to run the website at ENSEIRB-MATMECA you have to :
 
 1. Clone the repository to your working directory:
 ```bash
-git clone https://github.com/your-username/voile-project.git
+git clone https://github.com/wiisar/voileProject.git
 ```
 5. Create a database if needed:
 ```bash
@@ -48,7 +47,7 @@ mysql -u your-username -p voile_db < bdd/1-init-bdd-structure.sql
 mysql -u your-username -p voile_db < bdd/2-init-bdd-data.sql
 ```
 
-7. Update the database connection settings in bddconnexion.php to match ENSEIRB environment:
+7. Update the database connection settings in bddconnexion.php:
 ```php
 // Open bddconnexion.php and modify these credentials
 $host = "localhost"; // or specific ENSEIRB database host
@@ -56,8 +55,9 @@ $user = "your-username"; // your ENSEIRB username
 $password = "your-password"; // your database password
 $database = "voile_db"; // the name of your database
 ```
-
+8. Push html code on zzz serveur:
 You can use this command to send html directory on your zzz.bordeaux-inp.fr server:
+
 ```bash
 ./push_tftp.sh
 ```
