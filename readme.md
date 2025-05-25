@@ -65,7 +65,7 @@ You can use this command to send html directory on your zzz.bordeaux-inp.fr serv
 This script will ask for your ftp password on ZZZ.
 
 and after you can visit the website http://[username].zzz.bordeaux-inp.fr/home.php
-
+```text
 github_version/
 ├── bdd/                       # Scripts SQL pour la base de données
 │   ├── drop-bdd.sql           # Script pour supprimer toutes les tables/triggers
@@ -104,3 +104,4 @@ github_version/
 └── ...                        # Autres fichiers racines éventuels
 
 
+```
