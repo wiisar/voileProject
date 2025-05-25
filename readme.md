@@ -66,4 +66,41 @@ This script will ask for your ftp password on ZZZ.
 
 and after you can visit the website http://[username].zzz.bordeaux-inp.fr/home.php
 
+github_version/
+├── bdd/                       # Scripts SQL pour la base de données
+│   ├── drop-bdd.sql           # Script pour supprimer toutes les tables/triggers
+│   ├── init-bdd-structure.sql # Script pour créer la structure de la base (tables, triggers)
+│   ├── init-bdd-data.sql      # Script pour insérer les données de test
+│
+├── html/                      # Code source du site web
+│   ├── adminpage/             # Pages d'administration (gestion séjours, utilisateurs, etc.)
+│   │   ├── sejours.php        # Gestion des séjours (tableau, boutons gérer/supprimer)
+│   │   ├── sejour_details.php # Détail d'un séjour (participants, ajout/suppression)
+│   │   └── ...                # Autres pages d'administration
+│   │
+│   ├── phpfunc/               # Fonctions PHP réutilisables
+│   │   ├── bddconnexion.php   # Connexion à la base de données
+│   │   ├── addSejour.php      # Formulaire/traitement pour ajouter un séjour
+│   │   ├── deleteSejour.php   # Suppression d'un séjour
+│   │   ├── navbar.php         # Barre de navigation commune
+│   │   └── ...                # Autres fonctions PHP
+│   │
+│   ├── style/                 # Feuilles de style CSS
+│   │   └── style.css          # Styles principaux du site
+│   │
+│   ├── script/                # Scripts JavaScript
+│   │   ├── display.js         # JS pour affichage dynamique (ex: formulaires)
+│   │   ├── userUpdate.js      # JS pour mise à jour utilisateur
+│   │   └── ...                # Autres scripts JS
+│   │
+│   ├── home.php               # Page d'accueil du site
+│   └── ...                    # Autres pages principales (login, trip, etc.)
+│
+├── var.env                    # Variables d'environnement (identifiants, mots de passe, etc.)
+├── run.sh                     # Script pour lancer les conteneurs Docker
+├── stop.sh                    # Script pour arrêter/clean les conteneurs Docker
+├── push_tftp.sh               # Script pour envoyer le site sur le serveur ZZZ
+├── readme.md                  # Documentation et instructions d'installation/utilisation
+└── ...                        # Autres fichiers racines éventuels
+
 
