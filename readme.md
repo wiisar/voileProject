@@ -56,6 +56,7 @@ $password = "your-password"; // your database password
 $database = "voile_db"; // the name of your database
 ```
 8. Push html code on zzz serveur:
+
 You can use this command to send html directory on your zzz.bordeaux-inp.fr server:
 
 ```bash
