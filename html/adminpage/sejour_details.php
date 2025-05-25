@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['group']) || $_SESSION['group'] != "Administrateur" ) {
+if (!isset($_SESSION['group']) || ($_SESSION['group'] != "Administrateur" && $_SESSION['group'] != "Planificateur")) {
     echo "<h2>Accès refusé.</h2>";
     exit;
 }
@@ -78,7 +78,14 @@ $stmt->close();
             <p><strong>Date :</strong> <?= htmlspecialchars($sejour['dates']) ?></p>
             <p><strong>Capacité :</strong> <?= htmlspecialchars($sejour['capacite']) ?></p>
             <p><strong>Nombre de participants :</strong> <?= $nbParticipants ?></p>
-            <p><a href="<?= isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '/adminpage/sejours.php' ?>">&larr; Retour</a></p>
+            <?php
+            // Store referrer URL in session when first loading the page
+            if (!isset($_SESSION['sejour_details_referrer'])) {
+                $_SESSION['sejour_details_referrer'] = isset($_SERVER['HTTP_REFERER']) ? 
+                    $_SERVER['HTTP_REFERER'] : '/adminpage/sejours.php';
+            }
+            ?>
+            <a href="<?= htmlspecialchars($_SESSION['sejour_details_referrer']) ?>" class="btn-secondaire">&larr; Retour</a>
         </div>
         <div class="participants-panel">
             <h2>Ajouter un participant</h2>

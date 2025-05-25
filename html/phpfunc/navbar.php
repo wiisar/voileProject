@@ -4,13 +4,12 @@
     <li class="dropdown">
         <a href="#" class="dropbtn">Informations</a>
         <div class="dropdown-content">
-            <a href="/pricing.php">Prix</a>
             <a href="/club.php">Club</a>
             <a href="/horaires.php">Horaires</a>
         </div>
     </li>
     <!-- <li><a href="/reservation.php">Réserver en ligne</a></li> -->
-    <li><a href="/trip.php">Séjours organisés</a></li>
+    <li><a href="/sejour.php">Séjours organisés</a></li>
     <li><a href="/contact.php">Contact</a></li>
     <?php
             echo '<div class="login-group">';

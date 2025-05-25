@@ -3,6 +3,7 @@
 Salome RODRIGUEZ
 Benjamin MANEM
 
+## Running with Docker
 To run the website you have to install docker :
 ```bash
 # Install Docker
@@ -12,6 +13,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 # Verify Docker installation
 docker --version
 ```
+Before running the website you can modify credential in var.env to specify strong password.
 and run this script to start docker containers for the website :
 ```bash
 ./run.sh
@@ -23,24 +25,44 @@ To stop the website and clean containers you can run :
 
 ```bash
 ./stop.sh
-
 ```
-Vidéos :
-- les héberger sur Youtube ?
+## Running at ENSEIRB-MATMECA
 
-Formulaire de contact :
-- ajouter une FAQ dans la partie Contact
-- auto-remplir le nom dans le formulaire de contact
+If you want to run the website at ENSEIRB-MATMECA you have to :
 
-Sécurité :
-- quelles sont les failles actuelles ?
-- quelles sont les pistes à améliorer ?
-- sécurité concernant le champ isAdmin : géré par Ben avec injection SQL
+1. Clone the repository to your working directory:
+```bash
+git clone https://github.com/your-username/voile-project.git
+```
+5. Create a database if needed:
+```bash
+mysql -u your-username -p -e "CREATE DATABASE voile_db;"
+```
 
-Administrateurs :
-- créér plusieurs types d'administrateurs en fonction de ce qu'il font
-- autoriser des suppressions (stages, bateaux, etc...) sans supprimer de la BDD mais en ajoutant un champ isAdmin à activer ou désactiver pour le rendre visible ou pas sur le site
+6. Import the database structure and data:
+```bash
+# Import structure
+mysql -u your-username -p voile_db < bdd/1-init-bdd-structure.sql
 
-Autres fontionalités :
-- un php spécial pour mettre toutes les pages à jour si on ajoute un onglet par exemple
-- réfléchir aux autres fonctionalités possibles avec l'authentification (adhérent ou pas) ?
+# Import data
+mysql -u your-username -p voile_db < bdd/2-init-bdd-data.sql
+```
+
+7. Update the database connection settings in bddconnexion.php to match ENSEIRB environment:
+```php
+// Open bddconnexion.php and modify these credentials
+$host = "localhost"; // or specific ENSEIRB database host
+$user = "your-username"; // your ENSEIRB username
+$password = "your-password"; // your database password
+$database = "voile_db"; // the name of your database
+```
+
+You can use this command to send html directory on your zzz.bordeaux-inp.fr server:
+```bash
+./push_tftp.sh
+```
+This script will ask for your ftp password on ZZZ.
+
+and after you can visit the website http://[username].zzz.bordeaux-inp.fr/home.php
+
+

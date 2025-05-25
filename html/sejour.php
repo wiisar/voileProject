@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["intitule"]) && isset($
                           </form>';
                 }
             } else {
-                echo '<p style="color:#7ec9d3;font-size:14px;">Connectez-vous pour vous inscrire</p>';
+                echo '<p style="color:red;font-size:14px;">Connectez-vous pour vous inscrire</p>';
             }
             if (isset($_SESSION['group']) && ($_SESSION['group'] == "Administrateur" || $_SESSION['group'] == "Planificateur")) {
     echo '<form method="get" action="/adminpage/sejour_details.php" style="margin-top:10px;">
@@ -195,11 +195,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["desinscrireSejour"]) &
     $stmt->close();
 }
 
-    // if (isset($_SESSION["username"])) {
-    //     echo "<h1>Votre adresse mail est : " . htmlspecialchars($_SESSION["username"]) . "</h1>";
-    // } else {
-    //     echo "<h1>Adresse mail non disponible. Veuillez vous connecter.</h1>";
-    // } TEST
     ?>
     <script src="script/display.js"></script>
 </body>
