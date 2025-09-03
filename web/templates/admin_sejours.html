@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Séjours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    {{template "navbar" .}}
+    
+    <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
+    <h2 id="titre-onglet">Gestion des séjours</h2>
+
+    <button id="addSejBtn">Ajouter un séjour</button>
+    
+    <div id="addSejour" style="display:none;">
+        <form method="POST" action="/adminpage/add-sejour">
+            <h3>Ajouter un séjour</h3>
+            <label>Capacité:</label>
+            <input type="number" name="capacite" required>
+            
+            <label>Prix:</label>
+            <input type="number" name="prix" step="0.01" required>
+            
+            <label>Port de départ:</label>
+            <select name="idPortsDepart" required>
+                {{range .ports}}
+                    <option value="{{.ID}}">{{.Emplacements}}</option>
+                {{end}}
+            </select>
+            
+            <label>Port d'arrivée:</label>
+            <select name="idPortsArriver" required>
+                {{range .ports}}
+                    <option value="{{.ID}}">{{.Emplacements}}</option>
+                {{end}}
+            </select>
+            
+            <label>Date:</label>
+            <input type="date" name="dates" required>
+            
+            <label>Stage:</label>
+            <select name="idStage" required>
+                {{range .stages}}
+                    <option value="{{.ID}}">{{.Intitule}}</option>
+                {{end}}
+            </select>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+
+    {{if .sejours}}
+        <table class="user-tab" border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>Stage</th>
+                <th>Port de départ</th>
+                <th>Port d'arrivée</th>
+                <th>Date</th>
+                <th>Capacité</th>
+                <th>Prix</th>
+                <th>Type de bateau</th>
+                <th>Durée</th>
+                <th>Gérer</th>
+                <th>Supprimer</th>
+            </tr>
+            {{range .sejours}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td>{{.Intitule}}</td>
+                    <td>{{.PortDepart}}</td>
+                    <td>{{.PortArriver}}</td>
+                    <td>{{.Dates.Format "2006-01-02"}}</td>
+                    <td>{{.Capacite}}</td>
+                    <td>{{.Prix}} €</td>
+                    <td>{{.Type}}</td>
+                    <td>{{.Duree}}</td>
+                    <td>
+                        <a href="/adminpage/sejour_details.php?idSejour={{.ID}}">Gérer</a>
+                    </td>
+                    <td>
+                        <form method="POST" action="/adminpage/delete-sejour" style="display:inline;">
+                            <input type="hidden" name="idSejour" value="{{.ID}}">
+                            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce séjour?')">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {{end}}
+        </table>
+    {{else}}
+        <p>Aucun séjour trouvé.</p>
+    {{end}}
+
+    <script src="/script/display.js"></script>
+</body>
+</html>

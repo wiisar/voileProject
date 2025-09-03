@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Utilisateurs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    {{template "navbar" .}}
+    
+    <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
+    <h2 id="titre-onglet">Gestion des utilisateurs</h2>
+
+    <button id="addUserBtn">Ajouter un utilisateur</button>
+    
+    <div id="userAddModal" style="display:none;">
+        <form method="POST" action="/adminpage/add-user">
+            <h3>Ajouter un utilisateur</h3>
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="text" name="prenom" placeholder="Prénom" required>
+            <input type="email" name="mail" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+
+    {{if .users}}
+        <table class="user-tab" border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date d'adhésion</th>
+                <th>Actions</th>
+            </tr>
+            {{range .users}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td>{{.Nom}}</td>
+                    <td>{{.Prenom}}</td>
+                    <td>{{.Mail}}</td>
+                    <td>{{.DateAdhesion.Format "2006-01-02"}}</td>
+                    <td>
+                        <form method="POST" action="/adminpage/update-user" style="display:inline;">
+                            <input type="hidden" name="idAdherent" value="{{.ID}}">
+                            <input type="text" name="nom" value="{{.Nom}}" size="10">
+                            <input type="text" name="prenom" value="{{.Prenom}}" size="10">
+                            <input type="email" name="mail" value="{{.Mail}}" size="15">
+                            <button type="submit">Modifier</button>
+                        </form>
+                        <form method="POST" action="/adminpage/delete-user" style="display:inline;">
+                            <input type="hidden" name="idAdherent" value="{{.ID}}">
+                            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {{end}}
+        </table>
+    {{else}}
+        <p>Aucun utilisateur trouvé.</p>
+    {{end}}
+
+    <script src="/script/display.js"></script>
+</body>
+</html>

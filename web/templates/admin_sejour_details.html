@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du séjour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    {{template "navbar" .}}
+    
+    <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
+    <h2 id="titre-onglet">Détails du séjour</h2>
+
+    {{if .sejour}}
+        <div class="sejour-details">
+            <h3>{{.sejour.Intitule}} - {{.sejour.Type}}</h3>
+            <p><strong>Date:</strong> {{.sejour.Dates.Format "2006-01-02"}}</p>
+            <p><strong>Départ:</strong> {{.sejour.PortDepart}}</p>
+            <p><strong>Arrivée:</strong> {{.sejour.PortArriver}}</p>
+            <p><strong>Capacité:</strong> {{.sejour.Capacite}}</p>
+            <p><strong>Prix:</strong> {{.sejour.Prix}} €</p>
+            <p><strong>Durée:</strong> {{.sejour.Duree}}</p>
+        </div>
+
+        <div class="participants-section">
+            <h3>Participants ({{len .participants}})</h3>
+            {{if .participants}}
+                <ul>
+                    {{range .participants}}
+                        <li>{{.Nom}} {{.Prenom}} ({{.Mail}})</li>
+                    {{end}}
+                </ul>
+            {{else}}
+                <p>Aucun participant inscrit.</p>
+            {{end}}
+        </div>
+
+        <div class="encadrants-section">
+            <h3>Encadrants ({{len .encadrants}})</h3>
+            {{if .encadrants}}
+                <ul>
+                    {{range .encadrants}}
+                        <li>{{.Nom}} {{.Prenom}} ({{.Mail}})</li>
+                    {{end}}
+                </ul>
+            {{else}}
+                <p>Aucun encadrant assigné.</p>
+            {{end}}
+        </div>
+
+        <div class="available-users-section">
+            <h3>Utilisateurs disponibles</h3>
+            {{if .availableUsers}}
+                <form method="POST" action="/adminpage/add-participant">
+                    <input type="hidden" name="idSejour" value="{{.sejour.ID}}">
+                    <label>Ajouter un participant:</label>
+                    <select name="idAdherent">
+                        {{range .availableUsers}}
+                            <option value="{{.ID}}">{{.Nom}} {{.Prenom}}</option>
+                        {{end}}
+                    </select>
+                    <button type="submit">Ajouter comme participant</button>
+                </form>
+
+                <form method="POST" action="/adminpage/add-encadrant">
+                    <input type="hidden" name="idSejour" value="{{.sejour.ID}}">
+                    <label>Ajouter un encadrant:</label>
+                    <select name="idAdherent">
+                        {{range .availableUsers}}
+                            <option value="{{.ID}}">{{.Nom}} {{.Prenom}}</option>
+                        {{end}}
+                    </select>
+                    <button type="submit">Ajouter comme encadrant</button>
+                </form>
+            {{else}}
+                <p>Tous les utilisateurs sont déjà assignés à ce séjour.</p>
+            {{end}}
+        </div>
+
+        <div class="actions">
+            <a href="/adminpage/sejours.php">Retour à la liste des séjours</a>
+        </div>
+    {{else}}
+        <p>Séjour non trouvé.</p>
+    {{end}}
+
+    <script src="/script/display.js"></script>
+</body>
+</html>

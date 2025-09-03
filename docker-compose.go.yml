@@ -18,7 +18,7 @@ services:
   voile-app:
     build:
       context: .
-      dockerfile: Dockerfile.go
+      dockerfile: Dockerfile.golang
     container_name: voile_container
     ports:
       - "8080:8080"
