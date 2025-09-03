@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PS6_BDD_RTPASSWD}
+      MYSQL_DATABASE: bmanem
+      MYSQL_USER: bmanem
+      MYSQL_PASSWORD: ${PS6_BDD_MYSQLPASSWD}
+    volumes:
+      - ./bdd/:/docker-entrypoint-initdb.d/
+    networks:
+      - app_network
+
+  voile-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.go
+    container_name: voile_container
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=bmanem
+      - MYSQL_PASSWORD=${PS6_BDD_MYSQLPASSWD}
+      - MYSQL_DATABASE=bmanem
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

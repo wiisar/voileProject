@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Séjours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+    <style>
+        .btn-primary {
+            background-color: #00bfff;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #0099cc;
+            color: #fff;
+            opacity: 1;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    {{template "navbar" .}}
+    
+    <h1 id="titre-centre-nautique">Les Flots Bleus</h1>
+    <h2 id="titre-onglet">Séjours organisés</h2>
+
+    {{if .types}}
+        <form class="display-sejours" method="POST" action="/sejour">
+            <div class="onglets">
+                <label for="typeSejour">Intitule :</label>
+                <select id="intitule" name="intitule">
+                    <option value=""></option>
+                    {{range .types}}
+                        <option value="{{.}}" {{if eq . $.search.intitule}}selected{{end}}>{{.}}</option>
+                    {{end}}
+                </select>
+                
+                <select id="boat" name="boat">
+                    <option value=""></option>
+                    {{range .boats}}
+                        <option value="{{.ID}}" {{if eq .ID $.search.boat}}selected{{end}}>{{.Type}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <button type="submit">Afficher les séjours</button>
+        </form>
+    {{else}}
+        <p>Aucun type de séjour disponible.</p>
+    {{end}}
+
+    {{if .sejours}}
+        <div class="cards-container">
+            {{range .sejours}}
+                <div class="card">
+                    <h3>{{.Intitule}}</h3>
+                    <h4>{{.Type}}</h4>
+                    <p>Départ: {{.PortDepart}}</p>
+                    <p>Arrivée: {{.PortArriver}}</p>
+                    <p>Durée: {{.Duree}} heure(s)</p>
+                    <p>Capacité: {{.Capacite}}</p>
+                    <p>Prix: {{.Prix}} €</p>
+
+                    {{if $.user}}
+                        {{if .IsInscrit}}
+                            <form method="post" action="/desinscrire-sejour">
+                                <input type="hidden" name="desinscrireSejour" value="{{.ID}}">
+                                <button type="submit" class="btn-secondaire">Se désinscrire</button>
+                            </form>
+                        {{else}}
+                            <form method="post" action="/inscrire-sejour">
+                                <input type="hidden" name="inscrireSejour" value="{{.ID}}">
+                                <button type="submit" class="btn-primary">S'inscrire</button>
+                            </form>
+                        {{end}}
+                    {{else}}
+                        <p style="color:red;font-size:14px;">Connectez-vous pour vous inscrire</p>
+                    {{end}}
+
+                    {{if and $.user (or (eq $.user.Group "Administrateur") (eq $.user.Group "Planificateur"))}}
+                        <form method="get" action="/adminpage/sejour_details.php" style="margin-top:10px;">
+                            <input type="hidden" name="idSejour" value="{{.ID}}">
+                            <button type="submit" class="btn-secondary">Gérer</button>
+                        </form>
+                    {{end}}
+                </div>
+            {{end}}
+        </div>
+    {{else if .search}}
+        <p>Aucun séjour trouvé pour ce type.</p>
+    {{end}}
+
+    <script src="/script/display.js"></script>
+</body>
+</html>

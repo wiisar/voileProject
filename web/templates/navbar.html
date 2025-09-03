@@ -1,0 +1,99 @@
+{{define "navbar"}}
+<nav>
+    <ul>
+        <li><a href="/home.php">Accueil</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Informations</a>
+            <div class="dropdown-content">
+                <a href="/club.php">Club</a>
+                <a href="/horaires.php">Horaires</a>
+            </div>
+        </li>
+        <li><a href="/sejour.php">Séjours organisés</a></li>
+        <li><a href="/contact.php">Contact</a></li>
+        
+        <div class="login-group">
+            {{if .user}}
+                {{if or (eq .user.Group "Administrateur") (eq .user.Group "Planificateur")}}
+                    <li class="dropdown dropdown-admin">
+                        <a class="dropbtn-login" href="#">Administration</a>
+                        <div class="dropdown-content">
+                            {{if eq .user.Group "Administrateur"}}
+                                <a href="/adminpage/users.php">Gestion utilisateurs</a>
+                            {{end}}
+                            <a href="/adminpage/sejours.php">Gestion Séjours</a>
+                        </div>
+                    </li>
+                {{end}}
+                
+                <li class="dropdown dropdown-login">
+                    <a href="#" class="dropbtn-login">{{.user.Username}}</a>
+                    <div class="dropdown-content">
+                        <span class="log-panel-info">{{.user.Nom}} {{.user.Prenom}}</span><br>
+                        <span class="log-panel-info">{{.user.Group}}</span>
+                        <a href="/profile.php">Profil</a>
+                        <a href="/logout">Déconnexion</a>
+                    </div>
+                </li>
+            {{else}}
+                <li class="login-signup"><a href="#">Connexion / Inscription</a></li>
+                
+                <div id="loginModal" style="display:none;">
+                    {{template "login_form" .}}
+                </div>
+            {{end}}
+        </div>
+    </ul>
+</nav>
+
+<div class="fond-video">
+    <video autoplay muted loop>
+        <source src="/images/video_vague_grise.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la balise vidéo.
+    </video>
+</div>
+{{end}}
+
+{{define "login_form"}}
+<div class="logform">
+    <form method="POST" action="">
+        <div class="toggle-container">
+            <input type="radio" id="login" name="action" value="login" checked>
+            <label for="login" class="log-radio-label">Login</label>
+            <input type="radio" id="signup" name="action" value="signup">
+            <label for="signup" class="log-radio-label">Sign Up</label>
+        </div>
+        <br>
+        <input type="text" name="username" placeholder="Username" required>
+        <br>
+        <input type="password" name="password" placeholder="Password" required>
+        <br>
+        <div id="signup-fields" style="display: none;">
+            <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <br>
+            <input type="text" name="prenom" placeholder="Prenom">
+            <br>
+            <input type="text" name="nom" placeholder="Nom">
+            <br>
+            <input type="text" name="mail" placeholder="Email">
+            <br>
+        </div>
+        <input type="submit" name="send" value="Submit">
+    </form>
+</div>
+
+<script>
+    document.querySelectorAll('input[name="action"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const form = this.closest('form');
+            if (this.value === 'signup') {
+                document.getElementById('signup-fields').style.display = 'block';
+                form.action = '/signup';
+            } else {
+                document.getElementById('signup-fields').style.display = 'none';
+                form.action = '/login';
+            }
+        });
+    });
+</script>
+{{end}}

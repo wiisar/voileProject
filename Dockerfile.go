@@ -1,0 +1,35 @@
+# Build stage
+FROM golang:1.24.6-alpine AS builder
+
+WORKDIR /app
+
+# Copy go mod files
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN go build -o bin/voile-app cmd/web/main.go
+
+# Final stage
+FROM alpine:latest
+
+# Install ca-certificates for HTTPS
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+# Copy the binary from builder stage
+COPY --from=builder /app/bin/voile-app .
+
+# Copy templates and static files
+COPY --from=builder /app/web ./web
+COPY --from=builder /app/html ./html
+
+# Expose port
+EXPOSE 8080
+
+# Run the application
+CMD ["./voile-app"]

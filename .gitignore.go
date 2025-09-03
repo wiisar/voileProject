@@ -1,0 +1,13 @@
+*.log
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+.DS_Store
+.env
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
